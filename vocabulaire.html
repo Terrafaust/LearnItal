@@ -218,7 +218,7 @@
     <script>
         // --- BASE DE DONNÉES DE VOCABULAIRE COMPLÈTE (+1500 mots) ---
         const vocabulary = [
-    // 2.1. Salutations, Politesse et Expressions Courantes
+            // 2.1. Salutations, Politesse et Expressions Courantes
             { categorie: "Salutations & Politesse", italien: "Ciao", francais: "Salut / Au revoir (informel)", nuance: "S'utilise entre amis, famille, ou avec des personnes que l'on tutoie. Peut servir pour dire bonjour et au revoir." },
             { categorie: "Salutations & Politesse", italien: "Buongiorno", francais: "Bonjour", nuance: "S'utilise généralement le matin jusqu'à l'après-midi. Plus formel que `ciao`." },
             { categorie: "Salutations & Politesse", italien: "Buonasera", francais: "Bonsoir", nuance: "S'utilise en fin d'après-midi et le soir." },
@@ -1116,7 +1116,6 @@
             { categorie: "Relations Interpersonnelles", italien: "il rispetto", francais: "le respect", nuance: "" },
             { categorie: "Relations Interpersonnelles", italien: "il conflitto", francais: "le conflit", nuance: "" },
             { categorie: "Relations Interpersonnelles", italien: "la collaborazione", francais: "la collaboration", nuance: "" }
-
         ].map((item, index) => ({...item, id: index, hiddenByUser: false}));
         
         const vocabGrid = document.getElementById('vocab-grid');
