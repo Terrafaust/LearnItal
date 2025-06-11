@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apprendre l'Italien - Guide Complet</title>
+    <style>
+        :root {
+            --primary: #008C45; /* Vert italien */
+            --secondary: #CD212A; /* Rouge italien */
+            --accent: #005a9c; /* Bleu accent */
+            --light: #f7fafc;
+            --dark: #2d3748;
+            --background: #f0f5ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .flag-colors {
+            display: flex;
+            height: 10px;
+            margin: 20px auto 0;
+            width: 200px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .flag-green { background: #008C45; flex: 1; }
+        .flag-white { background: #F4F5F0; flex: 1; }
+        .flag-red { background: #CD212A; flex: 1; }
+
+        .navigation {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: var(--secondary);
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro-section h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .feature-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .program-overview {
+            margin-top: 50px;
+        }
+
+        .week-section {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .week-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .week-content {
+            padding: 20px 25px;
+            display: none;
+        }
+
+        .week-content.active {
+            display: block;
+        }
+
+        .day-item {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background-color 0.3s ease;
+        }
+
+        .day-item:hover {
+            background-color: var(--light);
+        }
+
+        .day-item:last-child {
+            border-bottom: none;
+        }
+
+        .day-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .day-description {
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-btn {
+                width: 80%;
+                text-align: center;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Apprendre l'Italien</h1>
+            <p>Votre guide complet pour maîtriser la langue de Dante</p>
+            <div class="flag-colors">
+                <div class="flag-green"></div>
+                <div class="flag-white"></div>
+                <div class="flag-red"></div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-btn active">🏠 Accueil</a>
+                <a href="vocabulaire.html" class="nav-btn">📚 Vocabulaire</a>
+                <a href="cours-italien-21-jours.html" class="nav-btn">📅 Programme 21 jours</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="main-content">
+                <section class="intro-section">
+                    <h2>Benvenuti nella vostra avventura italiana !</h2>
+                    <p>Découvrez la richesse de la langue italienne à travers notre méthode progressive et interactive. Des bases de la prononciation aux conversations courantes, nous vous accompagnons à chaque étape de votre apprentissage.</p>
+
+                    <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width: 700px; margin: 40px auto 0;">
+                        <div class="feature-card">
+                            <div class="feature-icon">📚</div>
+                            <h3>Vocabulaire Essentiel</h3>
+                            <p>Des centaines de mots classés par thème avec traduction et nuances pour enrichir votre lexique.</p>
+                            <a href="vocabulaire.html" class="nav-btn" style="margin-top: 15px; display: inline-block;">Explorer</a>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">📅</div>
+                            <h3>Programme 21 Jours</h3>
+                            <p>Un parcours structuré pour acquérir les bases de l'italien en trois semaines intensives.</p>
+                            <a href="cours-italien-21-jours.html" class="nav-btn" style="margin-top: 15px; display: inline-block;">Découvrir</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="programme" class="program-overview">
+                    <h2 style="text-align: center; color: var(--primary); margin-bottom: 30px;">Aperçu du Programme d'Apprentissage en 21 Jours</h2>
+                    <p style="text-align: center; margin-bottom: 20px;">Notre programme est conçu pour vous guider pas à pas. Cliquez sur le bouton "Programme 21 jours" dans la navigation ou sur "Découvrir" ci-dessus pour accéder au détail des cours.</p>
+
+                    <div class="week-section">
+                        <div class="week-header" onclick="toggleWeek('week1')">
+                            <h3>Semaine 1 : Les Fondations de l'Italien</h3>
+                            <span>▼</span>
+                        </div>
+                        <div class="week-content" id="week1">
+                            <div class="day-item">
+                                <div class="day-title">Jour 1 : Les Premiers Contacts</div>
+                                <div class="day-description">Maîtriser la prononciation de base et les salutations.</div>
+                            </div>
+                             <div class="day-item">
+                                <div class="day-title">Jour 2 : Masculin ou Féminin ?</div>
+                                <div class="day-description">Comprendre le genre, le nombre et les articles.</div>
+                            </div>
+                             <div class="day-item">
+                                <div class="day-title">Jour 3 : Être et se Présenter</div>
+                                <div class="day-description">Savoir se présenter en utilisant le verbe "essere".</div>
+                            </div>
+                             <div class="day-item">
+                                <div class="day-title">Jour 4 : Avoir et Posséder</div>
+                                <div class="day-description">Utiliser le verbe "avoir" pour parler de ses possessions et de son âge.</div>
+                            </div>
+                             <div class="day-item">
+                                <div class="day-title">Jour 5 : Je Parle Italien</div>
+                                <div class="day-description">Conjuguer les verbes réguliers du premier groupe (-ARE).</div>
+                            </div>
+                             <div class="day-item">
+                                <div class="day-title">Jour 6 : Quelle Heure Est-il ?</div>
+                                <div class="day-description">Compter de 0 à 100 et dire l'heure.</div>
+                            </div>
+                            <div class="day-item">
+                                <div class="day-title">Jour 7 : Révision et Questions</div>
+                                <div class="day-description">Consolidation des acquis et apprentissage des mots interrogatifs.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-section">
+                        <div class="week-header" onclick="toggleWeek('week2')">
+                            <h3>Semaine 2 : L'Interaction Quotidienne</h3>
+                            <span>▼</span>
+                        </div>
+                        <div class="week-content" id="week2">
+                             <div class="day-item">
+                                <div class="day-title">Jour 8 : Prendre et Lire</div>
+                                <div class="day-description">Maîtriser les verbes réguliers du deuxième groupe (-ERE).</div>
+                            </div>
+                            <div class="day-item">
+                                <div class="day-title">Jour 9 : Ouvrir et Dormir</div>
+                                <div class="day-description">Découvrir les verbes réguliers du troisième groupe (-IRE).</div>
+                            </div>
+                            <div class="day-item">
+                                <div class="day-title">Jour 10 : J'aime les Pâtes !</div>
+                                <div class="day-description">Exprimer ses goûts avec la structure "Mi piace".</div>
+                            </div>
+                            <div class="day-item">
+                                <div class="day-title">Jour 11 : Les Prépositions Simples</div>
+                                <div class="day-description">Utiliser les prépositions de base pour lier les mots (di, a, da, in...).</div>
+                            </div>
+                            <div class="day-item">
+                                <div class="day-title">Jour 12 : Pouvoir, Vouloir, Devoir</div>
+                                <div class="day-description">Utiliser les verbes modaux (potere, volere, dovere).</div>
+                            </div>
+                             <div class="day-item">
+                                <div class="day-title">Jour 13 : Hier J'ai Mangé...</div>
+                                <div class="day-description">Parler d'une action passée terminée avec le "Passato Prossimo" (avec avere).</div>
+                            </div>
+                            <div class="day-item">
+                                <div class="day-title">Jour 14 : Je Suis Allé au Cinéma</div>
+                                <div class="day-description">Compléter le "Passato Prossimo" avec l'auxiliaire "essere".</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="week-section">
+                        <div class="week-header" onclick="toggleWeek('week3')">
+                            <h3>Semaine 3 : L'Expression Nuancée</h3>
+                            <span>▼</span>
+                        </div>
+                        <div class="week-content" id="week3">
+                            <div class="day-item">
+                                <div class="day-title">Jour 15 : Je le Vois !</div>
+                                <div class="day-description">Remplacer un complément par un pronom direct (lo, la, li, le).</div>
+                            </div>
+                            <div class="day-item">
+                                <div class="day-title">Jour 16 : Fais Silence !</div>
+                                <div class="day-description">Donner un ordre ou un conseil avec l'impératif.</div>
+                            </div>
+                            <div class="day-item">
+                                <div class="day-title">Jour 17 : En Voyage</div>
+                                <div class="day-description">Se débrouiller en situation de voyage (transports, directions).</div>
+                            </div>
+                           <div class="day-item">
+                                <div class="day-title">Jour 18 : Il Était une Fois...</div>
+                                <div class="day-description">Apprendre à décrire des situations passées avec l'Imparfait.</div>
+                            </div>
+                            <div class="day-item">
+                                <div class="day-title">Jour 19 : Passato Prossimo ou Imperfetto ?</div>
+                                <div class="day-description">Apprendre à choisir le bon temps du passé.</div>
+                            </div>
+                            <div class="day-item">
+                                <div class="day-title">Jour 20 : Demain Je Partirai</div>
+                                <div class="day-description">Parler de ses projets et de l'avenir avec le futur simple.</div>
+                            </div>
+                            <div class="day-item">
+                                <div class="day-title">Jour 21 : Gran Finale !</div>
+                                <div class="day-description">Révision générale et mise en pratique dans des conversations simulées.</div>
+                            </div>
+                        </div>
+                    </div>
+                     <div style="text-align: center; margin-top: 30px;">
+                        <a href="cours-italien-21-jours.html" class="nav-btn" style="background-color: var(--secondary);">Accéder au Programme Complet</a>
+                    </div>
+                </section>
+
+                <section id="ressources" style="margin-top: 50px;">
+                    <h2 style="text-align: center; color: var(--primary); margin-bottom: 30px;">Ressources Complémentaires</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <h3>Applications Recommandées</h3>
+                            <p>Duolingo, Babbel, Memrise, Anki</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📖</div>
+                            <h3>Livres et Manuels</h3>
+                            <p>L'italien pour les nuls, Assimil - L'italien, Grammatica pratica della lingua italiana</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🌐</div>
+                            <h3>Sites Web</h3>
+                            <p>Loecsen, Rai Scuola, One World Italiano</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Apprendre l'Italien - Guide d'apprentissage de l'italien</p>
+            <p>Créé avec ❤️ pour les passionnés de la langue italienne</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleWeek(weekId) {
+            const content = document.getElementById(weekId);
+            const header = content.previousElementSibling;
+            const arrow = header.querySelector('span');
+
+            // Fermer les autres sections ouvertes
+            document.querySelectorAll('.week-content.active').forEach(openContent => {
+                if (openContent.id !== weekId) {
+                    openContent.classList.remove('active');
+                    const openHeader = openContent.previousElementSibling;
+                    const openArrow = openHeader.querySelector('span');
+                    openArrow.textContent = '▼';
+                }
+            });
+            
+            content.classList.toggle('active');
+            arrow.textContent = content.classList.contains('active') ? '▲' : '▼';
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.pathname === window.location.pathname) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
