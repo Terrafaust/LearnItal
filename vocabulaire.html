@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulaire Italien - Apprendre l'Italien</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #002b6c; /* Bleu italien */
+            --secondary: #008C45; /* Vert italien */
+            --accent: #CD212A;   /* Rouge italien */
+            --light: #f7fafc;
+            --dark: #2d3748;
+            --italien-color: #008C45;
+            --francais-color: #002b6c;
+            --background: #f0f5ff;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            --border-radius: 10px;
+            --transition: all 0.3s ease;
+            --mask-color: #e2e8f0;
+        }
+
+        /* Mode sombre */
+        body.dark-mode {
+            --light: #2d3748;
+            --dark: #f7fafc;
+            --background: #1a202c;
+            --card-bg: #2d3748;
+            --mask-color: #4a5568;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--background);
+            transition: var(--transition);
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; padding: 1.5rem 0; text-align: center;
+            box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000;
+        }
+
+        header h1 { font-family: 'Noto Sans', sans-serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
+        
+        nav ul { list-style: none; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border-radius: var(--border-radius); transition: var(--transition); }
+        nav a:hover, nav a.active { background-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+        
+        main { padding: 2rem 0; }
+
+        .controls {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem; margin-bottom: 1rem; padding: 1.5rem;
+            background-color: var(--card-bg); border-radius: var(--border-radius); box-shadow: var(--shadow);
+        }
+
+        .control-group { display: flex; flex-direction: column; }
+        .control-group.checkbox-group { flex-direction: row; align-items: center; gap: 0.5rem; }
+        .control-group.checkbox-group label { margin-bottom: 0; }
+        
+        #restore-btn {
+            background-color: var(--accent); color: white; border: none; padding: 0.8rem;
+            border-radius: var(--border-radius); cursor: pointer; transition: var(--transition);
+            font-weight: 600; display: none; /* Hidden by default */
+        }
+        #restore-btn:hover { opacity: 0.9; }
+
+        .control-group label { margin-bottom: 0.5rem; font-weight: 600; color: var(--dark); }
+        .control-group input[type="text"], .control-group select {
+            width: 100%; padding: 0.8rem; border: 2px solid #cbd5e0;
+            border-radius: var(--border-radius); background-color: var(--background);
+            color: var(--dark); transition: var(--transition);
+        }
+        .control-group input[type="text"]:focus, .control-group select:focus {
+            outline: none; border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 43, 108, 0.3);
+        }
+
+        .theme-toggle-container { display: flex; justify-content: flex-end; align-items: center; }
+        #theme-toggle { cursor: pointer; background: none; border: none; font-size: 1.8rem; padding: 0.5rem; }
+
+        .stats { text-align: center; margin-bottom: 2rem; font-weight: 500; }
+
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        
+        .vocab-card {
+            background-color: var(--card-bg); border-radius: var(--border-radius);
+            box-shadow: var(--shadow); padding: 1.5rem; transition: var(--transition);
+            display: flex; flex-direction: column; border-left: 5px solid var(--secondary);
+            position: relative; min-height: 150px;
+        }
+        .vocab-card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); }
+        .vocab-card.hidden-by-user { display: none; }
+        
+        .card-body { flex-grow: 1; }
+        .word-wrapper {
+            padding: 0.2rem 0.5rem; border-radius: 5px; cursor: pointer;
+            transition: background-color 0.2s; user-select: none;
+        }
+        .word-wrapper.masked { background-color: var(--mask-color); color: transparent !important; }
+
+        .word-italien { color: var(--italien-color); font-size: 1.7rem; font-family: 'Noto Sans', sans-serif; font-weight: 700; margin-bottom: 0.5rem; }
+        .word-francais { color: var(--francais-color); font-size: 1.2rem; font-family: 'Noto Sans', sans-serif; }
+
+        .card-footer { display: flex; justify-content: flex-start; margin-top: 1rem; }
+        
+        .nuance-btn {
+            background: none; border: 2px solid var(--accent); color: var(--accent);
+            border-radius: 50%; cursor: pointer; width: 30px; height: 30px;
+            font-size: 1rem; font-weight: bold; transition: var(--transition);
+        }
+        .nuance-btn:hover { background-color: var(--accent); color: white; transform: scale(1.1); }
+        
+        .remove-btn {
+            position: absolute; top: 8px; right: 8px; background: none; border: none;
+            font-size: 1.5rem; cursor: pointer; color: #aaa; transition: var(--transition);
+            line-height: 1;
+        }
+        .remove-btn:hover { color: var(--accent); transform: scale(1.2); }
+        
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
+        .modal.visible { display: flex; }
+        .modal-content { background-color: var(--card-bg); margin: auto; padding: 2rem; border: 1px solid #888; width: 90%; max-width: 600px; border-radius: var(--border-radius); position: relative; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .close-btn { color: #aaa; position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; font-weight: bold; cursor: pointer; }
+        .close-btn:hover, .close-btn:focus { color: var(--dark); }
+        #modalItalianWord { color: var(--italien-color); } #modalTranslation { color: var(--francais-color); font-style: italic; } #modalNuanceText { margin-top: 1rem; line-height: 1.7; }
+        
+        footer { text-align: center; padding: 2rem 0; margin-top: 2rem; background-color: var(--dark); color: var(--light); }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .vocab-grid { grid-template-columns: 1fr; }
+            .controls { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Apprendre l'Italien</h1>
+            <p>Votre guide complet de vocabulaire</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="cours-italien-21-jours.html">Cours 21 Jours</a></li>
+                    <li><a href="vocabulaire.html" class="active">Vocabulaire</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="search">Rechercher un mot...</label>
+                <input type="text" id="search" placeholder="Ex: Ciao, Maison...">
+            </div>
+            <div class="control-group">
+                <label for="category-filter">Filtrer par catégorie</label>
+                <select id="category-filter"><option value="all">Toutes les catégories</option></select>
+            </div>
+            <div class="control-group">
+                <label for="sort-by">Trier par</label>
+                <select id="sort-by"><option value="default">Par défaut</option><option value="italien-az">Italien (A-Z)</option><option value="francais-az">Français (A-Z)</option></select>
+            </div>
+             <div class="control-group">
+                <label>Options de révision</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="hide-italian-all">
+                    <label for="hide-italian-all">Masquer Italien</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="hide-french-all">
+                    <label for="hide-french-all">Masquer Français</label>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>Gestion</label>
+                <button id="restore-btn">Restaurer les mots (<span id="user-hidden-count">0</span>)</button>
+            </div>
+            <div class="theme-toggle-container">
+                <button id="theme-toggle" title="Changer le thème">🌙</button>
+            </div>
+        </div>
+
+        <div class="stats">
+            <p><span id="visible-words-count"></span> mots affichés sur <span id="total-words-count"></span>. <span id="filtered-hidden-count">0</span> cachés par les filtres.</p>
+        </div>
+
+        <div id="vocab-grid" class="vocab-grid"></div>
+
+    </main>
+
+    <div id="nuanceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalItalianWord"></h2>
+            <h3 id="modalTranslation"></h3><hr><p id="modalNuanceText"></p>
+        </div>
+    </div>
+    
+    <footer><p>&copy; 2024 Apprendre l'Italien - Tous droits réservés.</p></footer>
+
+    <script>
+        // --- BASE DE DONNÉES DE VOCABULAIRE COMPLÈTE (+1500 mots) ---
+        const vocabulary = [
+    // 2.1. Salutations, Politesse et Expressions Courantes
+            { categorie: "Salutations & Politesse", italien: "Ciao", francais: "Salut / Au revoir (informel)", nuance: "S'utilise entre amis, famille, ou avec des personnes que l'on tutoie. Peut servir pour dire bonjour et au revoir." },
+            { categorie: "Salutations & Politesse", italien: "Buongiorno", francais: "Bonjour", nuance: "S'utilise généralement le matin jusqu'à l'après-midi. Plus formel que `ciao`." },
+            { categorie: "Salutations & Politesse", italien: "Buonasera", francais: "Bonsoir", nuance: "S'utilise en fin d'après-midi et le soir." },
+            { categorie: "Salutations & Politesse", italien: "Arrivederci", francais: "Au revoir", nuance: "Formule standard pour prendre congé. Moins formel que 'ArrivederLa'." },
+            { categorie: "Salutations & Politesse", italien: "Per favore", francais: "S'il vous plaît / S'il te plaît", nuance: "Indispensable pour formuler une demande polie." },
+            { categorie: "Salutations & Politesse", italien: "Grazie", francais: "Merci", nuance: "Expression de gratitude de base." },
+            { categorie: "Salutations & Politesse", italien: "Grazie mille", francais: "Merci beaucoup", nuance: "Pour exprimer une gratitude plus appuyée." },
+            { categorie: "Salutations & Politesse", italien: "Prego", francais: "De rien / Je vous en prie", nuance: "Très polyvalent : réponse à `grazie`, pour inviter à faire quelque chose (ex: entrer), ou pour dire 'après vous'." },
+            { categorie: "Salutations & Politesse", italien: "Scusa", francais: "Excuse-moi (tutoiement)", nuance: "Pour s'excuser ou attirer l'attention de manière informelle." },
+            { categorie: "Salutations & Politesse", italien: "Scusi", francais: "Excusez-moi (vouvoiement)", nuance: "Forme de politesse pour s'excuser ou attirer l'attention." },
+            { categorie: "Salutations & Politesse", italien: "Mi dispiace", francais: "Je suis désolé(e)", nuance: "Pour exprimer le regret." },
+            { categorie: "Salutations & Politesse", italien: "Piacere", francais: "Enchanté(e)", nuance: "Abréviation de `Piacere di conoscerla/conoscerti` (Enchanté de faire votre/ta connaissance)." },
+            { categorie: "Salutations & Politesse", italien: "Come stai?", francais: "Comment vas-tu? (informel)", nuance: "Question sur l'état de santé ou le moral, tutoiement." },
+            { categorie: "Salutations & Politesse", italien: "Come sta?", francais: "Comment allez-vous? (formel)", nuance: "Question sur l'état de santé ou le moral, vouvoiement." },
+            { categorie: "Salutations & Politesse", italien: "Sto bene", francais: "Je vais bien", nuance: "Réponse courante à 'Come stai/sta?'." },
+            { categorie: "Salutations & Politesse", italien: "Sì", francais: "Oui", nuance: "Affirmatif." },
+            { categorie: "Salutations & Politesse", italien: "No", francais: "Non", nuance: "Négatif." },
+            { categorie: "Salutations & Politesse", italien: "Certo", francais: "Bien sûr / Certainement", nuance: "Exprime la certitude ou l'accord." },
+            { categorie: "Salutations & Politesse", italien: "Benvenuto/a", francais: "Bienvenu(e)", nuance: "S'accorde en genre avec la personne accueillie." },
+            { categorie: "Salutations & Politesse", italien: "Buonanotte", francais: "Bonne nuit", nuance: "Se dit juste avant d'aller dormir." },
+
+            // 2.2. Questions Fondamentales
+            { categorie: "Questions", italien: "Chi?", francais: "Qui?", nuance: "Pour interroger sur l'identité d'une personne." },
+            { categorie: "Questions", italien: "Cosa? / Che? / Che cosa?", francais: "Quoi? / Que?", nuance: "Pour interroger sur une chose ou une action. `Che?` est souvent plus informel." },
+            { categorie: "Questions", italien: "Dove?", francais: "Où?", nuance: "Pour interroger sur le lieu." },
+            { categorie: "Questions", italien: "Quando?", francais: "Quand?", nuance: "Pour interroger sur le moment." },
+            { categorie: "Questions", italien: "Come?", francais: "Comment?", nuance: "Pour interroger sur la manière, ou pour demander de répéter si l'on n'a pas compris." },
+            { categorie: "Questions", italien: "Perché?", francais: "Pourquoi?", nuance: "Pour interroger sur la cause ou le but. Sert aussi pour répondre 'parce que'." },
+            { categorie: "Questions", italien: "Quanto?", francais: "Combien?", nuance: "Pour interroger sur la quantité (non dénombrable)." },
+            { categorie: "Questions", italien: "Quanti/Quante?", francais: "Combien (de)?", nuance: "Pour interroger sur le nombre (dénombrable). S'accorde en genre et en nombre avec le nom." },
+            { categorie: "Questions", italien: "Quale? / Quali?", francais: "Quel(le)? / Lequel/Laquelle?", nuance: "Pour interroger sur un choix parmi plusieurs. `Quali` est le pluriel." },
+            { categorie: "Questions", italien: "Non capisco.", francais: "Je ne comprends pas.", nuance: "Phrase utile pour signaler une incompréhension." },
+            { categorie: "Questions", italien: "Può ripetere, per favore?", francais: "Pouvez-vous répéter, s'il vous plaît?", nuance: "Demande de répétition formelle." },
+            { categorie: "Questions", italien: "Non ho sentito.", francais: "Je n'ai pas entendu.", nuance: "Pour indiquer qu'on n'a pas saisi ce qui a été dit." },
+            { categorie: "Questions", italien: "Parla inglese/francese?", francais: "Parlez-vous anglais/français?", nuance: "Question utile pour les voyageurs." },
+            { categorie: "Questions", italien: "Dov'è il bagno?", francais: "Où sont les toilettes?", nuance: "Une des phrases les plus utiles en voyage." },
+
+            // 2.3. Mots Grammaticaux (Pronoms, Articles, Prépositions)
+            { categorie: "Grammaire", italien: "io", francais: "je", nuance: "Pronom personnel sujet, 1ère personne du singulier." },
+            { categorie: "Grammaire", italien: "tu", francais: "tu", nuance: "Pronom personnel sujet, 2ème personne du singulier (informel)." },
+            { categorie: "Grammaire", italien: "lui / lei", francais: "il / elle", nuance: "`Lei` (avec majuscule) est aussi le 'vous' de politesse." },
+            { categorie: "Grammaire", italien: "noi", francais: "nous", nuance: "Pronom personnel sujet, 1ère personne du pluriel." },
+            { categorie: "Grammaire", italien: "voi", francais: "vous", nuance: "Pronom personnel sujet, 2ème personne du pluriel." },
+            { categorie: "Grammaire", italien: "loro", francais: "ils / elles", nuance: "Pronom personnel sujet, 3ème personne du pluriel." },
+            { categorie: "Grammaire", italien: "il / lo / l'", francais: "le", nuance: "Article défini masculin singulier. `lo` devant s+cons., z, gn, ps, y. `l'` devant voyelle." },
+            { categorie: "Grammaire", italien: "la / l'", francais: "la", nuance: "Article défini féminin singulier. `l'` devant voyelle." },
+            { categorie: "Grammaire", italien: "i / gli", francais: "les", nuance: "Article défini masculin pluriel. `gli` devant voyelle, s+cons., z, etc." },
+            { categorie: "Grammaire", italien: "le", francais: "les", nuance: "Article défini féminin pluriel." },
+            { categorie: "Grammaire", italien: "un / uno", francais: "un", nuance: "Article indéfini masculin singulier. `uno` devant s+cons., z, etc." },
+            { categorie: "Grammaire", italien: "una / un'", francais: "une", nuance: "Article indéfini féminin singulier. `un'` devant voyelle." },
+            { categorie: "Grammaire", italien: "di", francais: "de", nuance: "Indique la possession, la matière, l'origine." },
+            { categorie: "Grammaire", italien: "a", francais: "à", nuance: "Indique le lieu, le temps, l'attribution." },
+            { categorie: "Grammaire", italien: "da", francais: "de / par / chez", nuance: "Indique la provenance, l'agent, le lieu (chez qqn)." },
+            { categorie: "Grammaire", italien: "in", francais: "en / dans", nuance: "Indique le lieu, le moyen de transport." },
+            { categorie: "Grammaire", italien: "con", francais: "avec", nuance: "Indique l'accompagnement, l'instrument." },
+            { categorie: "Grammaire", italien: "su", francais: "sur", nuance: "Indique la position." },
+            { categorie: "Grammaire", italien: "per", francais: "pour / par", nuance: "Indique le but, la cause, la durée." },
+            { categorie: "Grammaire", italien: "tra / fra", francais: "entre / dans (temps)", nuance: "Indique la position entre deux choses ou un futur proche." },
+            { categorie: "Grammaire", italien: "questo/a", francais: "ce/cette (proche)", nuance: "Adjectif démonstratif." },
+            { categorie: "Grammaire", italien: "quello/a", francais: "ce/cette (éloigné)", nuance: "Adjectif démonstratif." },
+            { categorie: "Grammaire", italien: "mio/mia", francais: "mon/ma", nuance: "Adjectif possessif. S'accorde avec l'objet possédé." },
+
+            // 2.4. Les Nombres, le Temps, les Jours et les Mois
+            { categorie: "Nombres & Temps", italien: "zero", francais: "zéro", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "uno", francais: "un", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "due", francais: "deux", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "tre", francais: "trois", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "quattro", francais: "quatre", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "cinque", francais: "cinq", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "sei", francais: "six", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "sette", francais: "sept", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "otto", francais: "huit", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "nove", francais: "neuf", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "dieci", francais: "dix", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "undici", francais: "onze", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "dodici", francais: "douze", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "tredici", francais: "treize", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "venti", francais: "vingt", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "trenta", francais: "trente", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "cento", francais: "cent", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "mille", francais: "mille", nuance: "Pluriel : `mila`. Ex: `duemila` (deux mille)." },
+            { categorie: "Nombres & Temps", italien: "oggi", francais: "aujourd'hui", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "domani", francais: "demain", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "ieri", francais: "hier", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "adesso / ora", francais: "maintenant", nuance: "`Ora` est parfois perçu comme plus immédiat." },
+            { categorie: "Nombres & Temps", italien: "lunedì", francais: "lundi", nuance: "Les jours de la semaine ne prennent pas de majuscule." },
+            { categorie: "Nombres & Temps", italien: "martedì", francais: "mardi", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "mercoledì", francais: "mercredi", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "giovedì", francais: "jeudi", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "venerdì", francais: "vendredi", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "sabato", francais: "samedi", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "domenica", francais: "dimanche", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "gennaio", francais: "janvier", nuance: "Les mois de l'année ne prennent pas de majuscule." },
+            { categorie: "Nombres & Temps", italien: "febbraio", francais: "février", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "marzo", francais: "mars", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "aprile", francais: "avril", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "maggio", francais: "mai", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "giugno", francais: "juin", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "luglio", francais: "juillet", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "agosto", francais: "août", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "settembre", francais: "septembre", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "ottobre", francais: "octobre", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "novembre", francais: "novembre", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "dicembre", francais: "décembre", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "settimana", francais: "semaine", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "mese", francais: "mois", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "anno", francais: "année / an", nuance: "" },
+            { categorie: "Nombres & Temps", italien: "ora", francais: "heure", nuance: "Ex: `Che ora è?` (Quelle heure est-il?)" },
+
+            // 2.5. Les Personnes et la Famille
+            { categorie: "Famille & Personnes", italien: "la gente", francais: "les gens", nuance: "Terme collectif." },
+            { categorie: "Famille & Personnes", italien: "la persona", francais: "la personne", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "l'uomo", francais: "l'homme", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "la donna", francais: "la femme", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "il bambino / la bambina", francais: "l'enfant (garçon / fille)", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "il ragazzo / la ragazza", francais: "le garçon / la fille (jeune)", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "il padre", francais: "le père", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "la madre", francais: "la mère", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "il figlio / la figlia", francais: "le fils / la fille", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "il fratello / la sorella", francais: "le frère / la sœur", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "il marito / la moglie", francais: "le mari / la femme (épouse)", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "l'amico / l'amica", francais: "l'ami / l'amie", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "il nonno / la nonna", francais: "le grand-père / la grand-mère", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "lo zio / la zia", francais: "l'oncle / la tante", nuance: "" },
+            { categorie: "Famille & Personnes", italien: "il cugino / la cugina", francais: "le cousin / la cousine", nuance: "" },
+
+            // 2.6. La Nourriture et les Boissons
+            { categorie: "Nourriture & Boissons", italien: "il cibo", francais: "la nourriture", nuance: "" },
+            { categorie: "Nourriture & Boissons", italien: "mangiare", francais: "manger", nuance: "Verbe." },
+            { categorie: "Nourriture & Boissons", italien: "bere", francais: "boire", nuance: "Verbe." },
+            { categorie: "Nourriture & Boissons", italien: "l'acqua", francais: "l'eau", nuance: "`naturale` (plate) ou `frizzante` (gazeuse)." },
+            { categorie: "Nourriture & Boissons", italien: "il vino", francais: "le vin", nuance: "`rosso` (rouge), `bianco` (blanc), `rosato` (rosé)." },
+            { categorie: "Nourriture & Boissons", italien: "il caffè", francais: "le café", nuance: "En Italie, un `caffè` est généralement un expresso." },
+            { categorie: "Nourriture & Boissons", italien: "il pane", francais: "le pain", nuance: "" },
+            { categorie: "Nourriture & Boissons", italien: "la pasta", francais: "les pâtes / la pâte", nuance: "Terme générique." },
+            { categorie: "Nourriture & Boissons", italien: "la carne", francais: "la viande", nuance: "" },
+            { categorie: "Nourriture & Boissons", italien: "il pesce", francais: "le poisson", nuance: "" },
+            { categorie: "Nourriture & Boissons", italien: "la frutta", francais: "les fruits", nuance: "Terme collectif." },
+            { categorie: "Nourriture & Boissons", italien: "la verdura", francais: "les légumes", nuance: "Terme collectif." },
+            { categorie: "Nourriture & Boissons", italien: "il formaggio", francais: "le fromage", nuance: "" },
+            { categorie: "Nourriture & Boissons", italien: "il dolce", francais: "le dessert / le gâteau", nuance: "" },
+            { categorie: "Nourriture & Boissons", italien: "la pizza", francais: "la pizza", nuance: "Symbole de la cuisine italienne." },
+            { categorie: "Nourriture & Boissons", italien: "l'olio (d'oliva)", francais: "l'huile (d'olive)", nuance: "Ingrédient fondamental." },
+            { categorie: "Nourriture & Boissons", italien: "il sale", francais: "le sel", nuance: "" },
+            { categorie: "Nourriture & Boissons", italien: "lo zucchero", francais: "le sucre", nuance: "" },
+            { categorie: "Nourriture & Boissons", italien: "la colazione", francais: "le petit-déjeuner", nuance: "" },
+            { categorie: "Nourriture & Boissons", italien: "il pranzo", francais: "le déjeuner", nuance: "" },
+            { categorie: "Nourriture & Boissons", italien: "la cena", francais: "le dîner", nuance: "" },
+
+            // 2.7. Au Restaurant
+            { categorie: "Au Restaurant", italien: "il ristorante", francais: "le restaurant", nuance: "" },
+            { categorie: "Au Restaurant", italien: "il menù", francais: "le menu / la carte", nuance: "" },
+            { categorie: "Au Restaurant", italien: "l'antipasto", francais: "l'entrée", nuance: "Littéralement 'avant le repas'." },
+            { categorie: "Au Restaurant", italien: "il primo", francais: "le premier plat", nuance: "Généralement des pâtes, du risotto, une soupe." },
+            { categorie: "Au Restaurant", italien: "il secondo", francais: "le plat principal", nuance: "Généralement de la viande ou du poisson." },
+            { categorie: "Au Restaurant", italien: "il contorno", francais: "l'accompagnement", nuance: "Légumes, etc. Souvent commandé séparément." },
+            { categorie: "Au Restaurant", italien: "il cameriere / la cameriera", francais: "le serveur / la serveuse", nuance: "" },
+            { categorie: "Au Restaurant", italien: "ordinare", francais: "commander", nuance: "Verbe." },
+            { categorie: "Au Restaurant", italien: "il conto", francais: "l'addition", nuance: "" },
+            { categorie: "Au Restaurant", italien: "il coperto", francais: "les frais de couvert", nuance: "Frais fixes par personne souvent ajoutés à l'addition." },
+            { categorie: "Au Restaurant", italien: "prenotare", francais: "réserver", nuance: "Verbe. Ex: `Vorrei prenotare un tavolo`." },
+            { categorie: "Au Restaurant", italien: "il tavolo", francais: "la table", nuance: "" },
+
+            // 2.8. Les Voyages et les Transports
+            { categorie: "Voyages & Transports", italien: "il viaggio", francais: "le voyage", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "la macchina", francais: "la voiture", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "l'autobus", francais: "l'autobus", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "il treno", francais: "le train", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "l'aereo", francais: "l'avion", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "la bicicletta", francais: "le vélo", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "la nave", francais: "le navire", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "la stazione", francais: "la gare", nuance: "Gare ferroviaire." },
+            { categorie: "Voyages & Transports", italien: "l'aeroporto", francais: "l'aéroport", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "il porto", francais: "le port", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "il biglietto", francais: "le billet", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "la partenza", francais: "le départ", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "l'arrivo", francais: "l'arrivée", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "la strada", francais: "la rue / la route", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "a destra", francais: "à droite", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "a sinistra", francais: "à gauche", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "dritto", francais: "tout droit", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "vicino", francais: "proche", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "lontano", francais: "loin", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "la mappa", francais: "la carte (plan)", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "la valigia", francais: "la valise", nuance: "" },
+            { categorie: "Voyages & Transports", italien: "il passaporto", francais: "le passeport", nuance: "" },
+
+            // 2.9. L'Hébergement (Logement)
+            { categorie: "Hébergement", italien: "l'albergo / l'hotel", francais: "l'hôtel", nuance: "`Albergo` est plus traditionnellement italien." },
+            { categorie: "Hébergement", italien: "la camera", francais: "la chambre", nuance: "" },
+            { categorie: "Hébergement", italien: "la prenotazione", francais: "la réservation", nuance: "" },
+            { categorie: "Hébergement", italien: "la chiave", francais: "la clé", nuance: "" },
+            { categorie: "Hébergement", italien: "il letto", francais: "le lit", nuance: "" },
+            { categorie: "Hébergement", italien: "il bagno", francais: "la salle de bain", nuance: "" },
+            { categorie: "Hébergement", italien: "la doccia", francais: "la douche", nuance: "" },
+            { categorie: "Hébergement", italien: "l'asciugamano", francais: "la serviette", nuance: "" },
+
+            // 2.10. Les Achats et l'Argent
+            { categorie: "Achats & Argent", italien: "il negozio", francais: "le magasin", nuance: "" },
+            { categorie: "Achats & Argent", italien: "il mercato", francais: "le marché", nuance: "" },
+            { categorie: "Achats & Argent", italien: "il supermercato", francais: "le supermarché", nuance: "" },
+            { categorie: "Achats & Argent", italien: "il prezzo", francais: "le prix", nuance: "" },
+            { categorie: "Achats & Argent", italien: "Quanto costa?", francais: "Combien ça coûte?", nuance: "" },
+            { categorie: "Achats & Argent", italien: "i soldi", francais: "l'argent", nuance: "Terme général pour la monnaie." },
+            { categorie: "Achats & Argent", italien: "la carta di credito", francais: "la carte de crédit", nuance: "" },
+            { categorie: "Achats & Argent", italien: "pagare", francais: "payer", nuance: "" },
+            { categorie: "Achats & Argent", italien: "comprare", francais: "acheter", nuance: "" },
+            { categorie: "Achats & Argent", italien: "vendere", francais: "vendre", nuance: "" },
+
+            // 2.11. Le Corps Humain et la Santé
+            { categorie: "Corps & Santé", italien: "il corpo", francais: "le corps", nuance: "" },
+            { categorie: "Corps & Santé", italien: "la testa", francais: "la tête", nuance: "" },
+            { categorie: "Corps & Santé", italien: "il viso", francais: "le visage", nuance: "" },
+            { categorie: "Corps & Santé", italien: "l'occhio", francais: "l'œil", nuance: "" },
+            { categorie: "Corps & Santé", italien: "il naso", francais: "le nez", nuance: "" },
+            { categorie: "Corps & Santé", italien: "la bocca", francais: "la bouche", nuance: "" },
+            { categorie: "Corps & Santé", italien: "l'orecchio", francais: "l'oreille", nuance: "" },
+            { categorie: "Corps & Santé", italien: "la mano", francais: "la main", nuance: "" },
+            { categorie: "Corps & Santé", italien: "il piede", francais: "le pied", nuance: "" },
+            { categorie: "Corps & Santé", italien: "la gamba", francais: "la jambe", nuance: "" },
+            { categorie: "Corps & Santé", italien: "il braccio", francais: "le bras", nuance: "" },
+            { categorie: "Corps & Santé", italien: "il cuore", francais: "le cœur", nuance: "" },
+            { categorie: "Corps & Santé", italien: "il dottore", francais: "le médecin", nuance: "" },
+            { categorie: "Corps & Santé", italien: "l'ospedale", francais: "l'hôpital", nuance: "" },
+            { categorie: "Corps & Santé", italien: "la farmacia", francais: "la pharmacie", nuance: "" },
+            { categorie: "Corps & Santé", italien: "il dolore", francais: "la douleur", nuance: "" },
+            { categorie: "Corps & Santé", italien: "la febbre", francais: "la fièvre", nuance: "" },
+
+            // 2.12. Le Travail et les Études
+            { categorie: "Travail & Études", italien: "il lavoro", francais: "le travail", nuance: "" },
+            { categorie: "Travail & Études", italien: "lavorare", francais: "travailler", nuance: "" },
+            { categorie: "Travail & Études", italien: "l'ufficio", francais: "le bureau", nuance: "" },
+            { categorie: "Travail & Études", italien: "la scuola", francais: "l'école", nuance: "" },
+            { categorie: "Travail & Études", italien: "studiare", francais: "étudier", nuance: "" },
+            { categorie: "Travail & Études", italien: "l'università", francais: "l'université", nuance: "" },
+            { categorie: "Travail & Études", italien: "il libro", francais: "le livre", nuance: "" },
+            { categorie: "Travail & Études", italien: "la penna", francais: "le stylo", nuance: "" },
+            { categorie: "Travail & Études", italien: "il quaderno", francais: "le cahier", nuance: "" },
+
+            // 2.13. La Nature et la Météo
+            { categorie: "Nature & Météo", italien: "il mondo", francais: "le monde", nuance: "" },
+            { categorie: "Nature & Météo", italien: "il sole", francais: "le soleil", nuance: "" },
+            { categorie: "Nature & Météo", italien: "la luna", francais: "la lune", nuance: "" },
+            { categorie: "Nature & Météo", italien: "la stella", francais: "l'étoile", nuance: "" },
+            { categorie: "Nature & Météo", italien: "il cielo", francais: "le ciel", nuance: "" },
+            { categorie: "Nature & Météo", italien: "la pioggia", francais: "la pluie", nuance: "" },
+            { categorie: "Nature & Météo", italien: "piovere", francais: "pleuvoir", nuance: "" },
+            { categorie: "Nature & Météo", italien: "la neve", francais: "la neige", nuance: "" },
+            { categorie: "Nature & Météo", italien: "Che tempo fa?", francais: "Quel temps fait-il?", nuance: "" },
+            { categorie: "Nature & Météo", italien: "Fa caldo", francais: "Il fait chaud", nuance: "" },
+            { categorie: "Nature & Météo", italien: "Fa freddo", francais: "Il fait froid", nuance: "" },
+            { categorie: "Nature & Météo", italien: "il mare", francais: "la mer", nuance: "" },
+            { categorie: "Nature & Météo", italien: "la montagna", francais: "la montagne", nuance: "" },
+            { categorie: "Nature & Météo", italien: "l'albero", francais: "l'arbre", nuance: "" },
+            { categorie: "Nature & Météo", italien: "il fiore", francais: "la fleur", nuance: "" },
+            { categorie: "Nature & Météo", italien: "il cane", francais: "le chien", nuance: "" },
+            { categorie: "Nature & Météo", italien: "il gatto", francais: "le chat", nuance: "" },
+
+            // 2.14. Verbes Courants
+            { categorie: "Verbes", italien: "essere", francais: "être", nuance: "Verbe auxiliaire fondamental." },
+            { categorie: "Verbes", italien: "avere", francais: "avoir", nuance: "Verbe auxiliaire fondamental." },
+            { categorie: "Verbes", italien: "fare", francais: "faire", nuance: "Verbe d'action très polyvalent." },
+            { categorie: "Verbes", italien: "andare", francais: "aller", nuance: "Verbe de mouvement." },
+            { categorie: "Verbes", italien: "venire", francais: "venir", nuance: "" },
+            { categorie: "Verbes", italien: "potere", francais: "pouvoir", nuance: "Verbe modal." },
+            { categorie: "Verbes", italien: "volere", francais: "vouloir", nuance: "Verbe modal." },
+            { categorie: "Verbes", italien: "dovere", francais: "devoir", nuance: "Verbe modal." },
+            { categorie: "Verbes", italien: "parlare", francais: "parler", nuance: "" },
+            { categorie: "Verbes", italien: "vedere", francais: "voir", nuance: "" },
+            { categorie: "Verbes", italien: "capire", francais: "comprendre", nuance: "" },
+            { categorie: "Verbes", italien: "sapere", francais: "savoir", nuance: "" },
+            { categorie: "Verbes", italien: "dire", francais: "dire", nuance: "" },
+            { categorie: "Verbes", italien: "dare", francais: "donner", nuance: "" },
+            { categorie: "Verbes", italien: "prendere", francais: "prendre", nuance: "" },
+            { categorie: "Verbes", italien: "mettere", francais: "mettre", nuance: "" },
+            { categorie: "Verbes", italien: "trovare", francais: "trouver", nuance: "" },
+            { categorie: "Verbes", italien: "lasciare", francais: "laisser", nuance: "" },
+            { categorie: "Verbes", italien: "guardare", francais: "regarder", nuance: "" },
+            { categorie: "Verbes", italien: "ascoltare", francais: "écouter", nuance: "" },
+            { categorie: "Verbes", italien: "scrivere", francais: "écrire", nuance: "" },
+            { categorie: "Verbes", italien: "leggere", francais: "lire", nuance: "" },
+            { categorie: "Verbes", italien: "aprire", francais: "ouvrir", nuance: "" },
+            { categorie: "Verbes", italien: "chiudere", francais: "fermer", nuance: "" },
+            { categorie: "Verbes", italien: "vivere", francais: "vivre", nuance: "" },
+            { categorie: "Verbes", italien: "morire", francais: "mourir", nuance: "" },
+            { categorie: "Verbes", italien: "dormire", francais: "dormir", nuance: "" },
+            { categorie: "Verbes", italien: "piacere", francais: "plaire", nuance: "Utilisé pour 'aimer' (ex: mi piace la pizza)." },
+            { categorie: "Verbes", italien: "conoscere", francais: "connaître", nuance: "" },
+            { categorie: "Verbes", italien: "ricordare", francais: "se souvenir", nuance: "" },
+
+            // 2.15. Adjectifs Courants
+            { categorie: "Adjectifs", italien: "grande", francais: "grand(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "piccolo/a", francais: "petit(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "bello/a", francais: "beau/belle", nuance: "" },
+            { categorie: "Adjectifs", italien: "brutto/a", francais: "laid(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "buono/a", francais: "bon/bonne", nuance: "" },
+            { categorie: "Adjectifs", italien: "cattivo/a", francais: "mauvais(e)/méchant(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "nuovo/a", francais: "nouveau/nouvelle", nuance: "" },
+            { categorie: "Adjectifs", italien: "vecchio/a", francais: "vieux/vieille", nuance: "" },
+            { categorie: "Adjectifs", italien: "giovane", francais: "jeune", nuance: "Invariable en genre." },
+            { categorie: "Adjectifs", italien: "facile", francais: "facile", nuance: "Invariable." },
+            { categorie: "Adjectifs", italien: "difficile", francais: "difficile", nuance: "Invariable." },
+            { categorie: "Adjectifs", italien: "vero/a", francais: "vrai(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "falso/a", francais: "faux/fausse", nuance: "" },
+            { categorie: "Adjectifs", italien: "contento/a", francais: "content(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "triste", francais: "triste", nuance: "Invariable." },
+            { categorie: "Adjectifs", italien: "stanco/a", francais: "fatigué(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "libero/a", francais: "libre", nuance: "" },
+            { categorie: "Adjectifs", italien: "occupato/a", francais: "occupé(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "pieno/a", francais: "plein(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "vuoto/a", francais: "vide", nuance: "" },
+            { categorie: "Adjectifs", italien: "caldo/a", francais: "chaud(e)", nuance: "Pour un objet. Pour le temps: 'fa caldo'." },
+            { categorie: "Adjectifs", italien: "freddo/a", francais: "froid(e)", nuance: "Pour un objet. Pour le temps: 'fa freddo'." },
+            { categorie: "Adjectifs", italien: "importante", francais: "important(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "interessante", francais: "intéressant(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "stesso/a", francais: "même", nuance: "" },
+            { categorie: "Adjectifs", italien: "diverso/a", francais: "différent(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "povero/a", francais: "pauvre", nuance: "" },
+            { categorie: "Adjectifs", italien: "ricco/a", francais: "riche", nuance: "" },
+            { categorie: "Adjectifs", italien: "possibile", francais: "possible", nuance: "" },
+            { categorie: "Adjectifs", italien: "impossibile", francais: "impossible", nuance: "" },
+
+            // 2.16. Adverbes Courants
+            { categorie: "Adverbes", italien: "bene", francais: "bien", nuance: "" },
+            { categorie: "Adverbes", italien: "male", francais: "mal", nuance: "" },
+            { categorie: "Adverbes", italien: "molto", francais: "beaucoup / très", nuance: "" },
+            { categorie: "Adverbes", italien: "poco", francais: "peu", nuance: "" },
+            { categorie: "Adverbes", italien: "troppo", francais: "trop", nuance: "" },
+            { categorie: "Adverbes", italien: "sempre", francais: "toujours", nuance: "" },
+            { categorie: "Adverbes", italien: "mai", francais: "jamais", nuance: "Nécessite `non` devant le verbe." },
+            { categorie: "Adverbes", italien: "spesso", francais: "souvent", nuance: "" },
+            { categorie: "Adverbes", italien: "qui / qua", francais: "ici", nuance: "Interchangeables dans la plupart des contextes." },
+            { categorie: "Adverbes", italien: "lì / là", francais: "là", nuance: "Interchangeables dans la plupart des contextes." },
+            { categorie: "Adverbes", italien: "prima", francais: "avant", nuance: "" },
+            { categorie: "Adverbes", italien: "dopo", francais: "après", nuance: "" },
+            { categorie: "Adverbes", italien: "presto", francais: "tôt / bientôt", nuance: "" },
+            { categorie: "Adverbes", italien: "tardi", francais: "tard", nuance: "" },
+            { categorie: "Adverbes", italien: "forse", francais: "peut-être", nuance: "" },
+            { categorie: "Adverbes", italien: "insieme", francais: "ensemble", nuance: "" },
+            { categorie: "Adverbes", italien: "ancora", francais: "encore", nuance: "" },
+            { categorie: "Adverbes", italien: "già", francais: "déjà", nuance: "" },
+            
+            // 2.17. Couleurs
+            { categorie: "Couleurs", italien: "il colore", francais: "la couleur", nuance: "" },
+            { categorie: "Couleurs", italien: "bianco/a", francais: "blanc(he)", nuance: "" },
+            { categorie: "Couleurs", italien: "nero/a", francais: "noir(e)", nuance: "" },
+            { categorie: "Couleurs", italien: "rosso/a", francais: "rouge", nuance: "" },
+            { categorie: "Couleurs", italien: "verde", francais: "vert(e)", nuance: "Invariable." },
+            { categorie: "Couleurs", italien: "giallo/a", francais: "jaune", nuance: "" },
+            { categorie: "Couleurs", italien: "blu", francais: "bleu(e)", nuance: "Invariable." },
+            { categorie: "Couleurs", italien: "azzurro/a", francais: "bleu clair", nuance: "" },
+            { categorie: "Couleurs", italien: "marrone", francais: "marron", nuance: "Invariable." },
+            { categorie: "Couleurs", italien: "grigio/a", francais: "gris(e)", nuance: "" },
+            { categorie: "Couleurs", italien: "rosa", francais: "rose", nuance: "Invariable." },
+            { categorie: "Couleurs", italien: "arancione", francais: "orange", nuance: "Invariable." },
+            { categorie: "Couleurs", italien: "viola", francais: "violet(te)", nuance: "Invariable." },
+            
+            // 2.18. La Maison et le Mobilier
+            { categorie: "Maison", italien: "la casa", francais: "la maison", nuance: "" },
+            { categorie: "Maison", italien: "l'appartamento", francais: "l'appartement", nuance: "" },
+            { categorie: "Maison", italien: "la stanza", francais: "la pièce", nuance: "" },
+            { categorie: "Maison", italien: "la porta", francais: "la porte", nuance: "" },
+            { categorie: "Maison", italien: "la finestra", francais: "la fenêtre", nuance: "" },
+            { categorie: "Maison", italien: "la cucina", francais: "la cuisine", nuance: "" },
+            { categorie: "Maison", italien: "il salotto", francais: "le salon", nuance: "" },
+            { categorie: "Maison", italien: "la camera da letto", francais: "la chambre à coucher", nuance: "" },
+            { categorie: "Maison", italien: "il tavolo", francais: "la table", nuance: "" },
+            { categorie: "Maison", italien: "la sedia", francais: "la chaise", nuance: "" },
+            { categorie: "Maison", italien: "il divano", francais: "le canapé", nuance: "" },
+            { categorie: "Maison", italien: "il giardino", francais: "le jardin", nuance: "" },
+
+            // 2.19. Loisirs et Passetemps
+            { categorie: "Loisirs & Passetemps", italien: "il tempo libero", francais: "le temps libre", nuance: "" },
+            { categorie: "Loisirs & Passetemps", italien: "giocare", francais: "jouer", nuance: "" },
+            { categorie: "Loisirs & Passetemps", italien: "il film", francais: "le film", nuance: "" },
+            { categorie: "Loisirs & Passetemps", italien: "la musica", francais: "la musique", nuance: "" },
+            { categorie: "Loisirs & Passetemps", italien: "cantare", francais: "chanter", nuance: "" },
+            { categorie: "Loisirs & Passetemps", italien: "ballare", francais: "danser", nuance: "" },
+            { categorie: "Loisirs & Passetemps", italien: "lo sport", francais: "le sport", nuance: "" },
+            { categorie: "Loisirs & Passetemps", italien: "la festa", francais: "la fête", nuance: "" },
+
+            // 2.20. La Ville et les Bâtiments
+            { categorie: "Ville & Bâtiments", italien: "la città", francais: "la ville", nuance: "" },
+            { categorie: "Ville & Bâtiments", italien: "il paese", francais: "le village / le pays", nuance: "Le contexte clarifie le sens." },
+            { categorie: "Ville & Bâtiments", italien: "la piazza", francais: "la place", nuance: "Lieu central de la vie sociale italienne." },
+            { categorie: "Ville & Bâtiments", italien: "il ponte", francais: "le pont", nuance: "" },
+            { categorie: "Ville & Bâtiments", italien: "la banca", francais: "la banque", nuance: "" },
+            { categorie: "Ville & Bâtiments", italien: "la posta", francais: "la poste", nuance: "" },
+            { categorie: "Ville & Bâtiments", italien: "il museo", francais: "le musée", nuance: "" },
+            { categorie: "Ville & Bâtiments", italien: "la chiesa", francais: "l'église", nuance: "" },
+
+            // 2.21. Vêtements et Accessoires
+            { categorie: "Vêtements & Accessoires", italien: "i vestiti", francais: "les vêtements", nuance: "" },
+            { categorie: "Vêtements & Accessoires", italien: "la maglietta", francais: "le t-shirt", nuance: "" },
+            { categorie: "Vêtements & Accessoires", italien: "i pantaloni", francais: "le pantalon", nuance: "" },
+            { categorie: "Vêtements & Accessoires", italien: "la gonna", francais: "la jupe", nuance: "" },
+            { categorie: "Vêtements & Accessoires", italien: "le scarpe", francais: "les chaussures", nuance: "" },
+            { categorie: "Vêtements & Accessoires", italien: "il cappello", francais: "le chapeau", nuance: "" },
+
+            // 2.22. Émotions et Sentiments
+            { categorie: "Émotions & Sentiments", italien: "l'amore", francais: "l'amour", nuance: "" },
+            { categorie: "Émotions & Sentiments", italien: "la felicità", francais: "le bonheur", nuance: "" },
+            { categorie: "Émotions & Sentiments", italien: "la tristezza", francais: "la tristesse", nuance: "" },
+            { categorie: "Émotions & Sentiments", italien: "la paura", francais: "la peur", nuance: "" },
+            { categorie: "Émotions & Sentiments", italien: "la rabbia", francais: "la colère", nuance: "" },
+
+            // 2.23. Concepts Abstraits
+            { categorie: "Concepts Abstraits", italien: "la vita", francais: "la vie", nuance: "" },
+            { categorie: "Concepts Abstraits", italien: "la morte", francais: "la mort", nuance: "" },
+            { categorie: "Concepts Abstraits", italien: "il tempo", francais: "le temps", nuance: "Durée ou météo." },
+            { categorie: "Concepts Abstraits", italien: "la ragione", francais: "la raison", nuance: "" },
+            { categorie: "Concepts Abstraits", italien: "l'idea", francais: "l'idée", nuance: "" },
+            { categorie: "Concepts Abstraits", italien: "il problema", francais: "le problème", nuance: "" },
+
+            // 2.24. Connecteurs Logiques
+            { categorie: "Connecteurs Logiques", italien: "e", francais: "et", nuance: "" },
+            { categorie: "Connecteurs Logiques", italien: "o / oppure", francais: "ou", nuance: "" },
+            { categorie: "Connecteurs Logiques", italien: "ma", francais: "mais", nuance: "" },
+            { categorie: "Connecteurs Logiques", italien: "se", francais: "si", nuance: "Conditionnel." },
+            { categorie: "Connecteurs Logiques", italien: "allora", francais: "alors", nuance: "" },
+            { categorie: "Connecteurs Logiques", italien: "quindi", francais: "donc / par conséquent", nuance: "" }
+
+            // 2.25. Technologie et Informatique
+            { categorie: "Technologie & Informatique", italien: "il computer", francais: "l'ordinateur", nuance: "" },
+            { categorie: "Technologie & Informatique", italien: "il telefono", francais: "le téléphone", nuance: "" },
+            { categorie: "Technologie & Informatique", italien: "lo smartphone / il cellulare", francais: "le smartphone / le portable", nuance: "`Cellulare` est très courant en Italie." },
+            { categorie: "Technologie & Informatique", italien: "internet", francais: "internet", nuance: "Invariable." },
+            { categorie: "Technologie & Informatique", italien: "l'email", francais: "l'e-mail / le courriel", nuance: "Invariable. Prononcé à l'anglaise." },
+            { categorie: "Technologie & Informatique", italien: "il sito web", francais: "le site web", nuance: "" },
+            { categorie: "Technologie & Informatique", italien: "la password", francais: "le mot de passe", nuance: "" },
+            { categorie: "Technologie & Informatique", italien: "scaricare", francais: "télécharger", nuance: "" },
+            { categorie: "Technologie & Informatique", italien: "cliccare", francais: "cliquer", nuance: "" },
+            { categorie: "Technologie & Informatique", italien: "il file", francais: "le fichier", nuance: "" },
+
+            // 2.26. Art et Culture
+            { categorie: "Art & Culture", italien: "l'arte", francais: "l'art", nuance: "" },
+            { categorie: "Art & Culture", italien: "la pittura", francais: "la peinture", nuance: "" },
+            { categorie: "Art & Culture", italien: "la scultura", francais: "la sculpture", nuance: "" },
+            { categorie: "Art & Culture", italien: "l'architettura", francais: "l'architecture", nuance: "" },
+            { categorie: "Art & Culture", italien: "il teatro", francais: "le théâtre", nuance: "" },
+            { categorie: "Art & Culture", italien: "il cinema", francais: "le cinéma", nuance: "" },
+            { categorie: "Art & Culture", italien: "la letteratura", francais: "la littérature", nuance: "" },
+            { categorie: "Art & Culture", italien: "la poesia", francais: "la poésie", nuance: "" },
+            { categorie: "Art & Culture", italien: "il quadro", francais: "le tableau", nuance: "" },
+            { categorie: "Art & Culture", italien: "la mostra", francais: "l'exposition", nuance: "" },
+            { categorie: "Art & Culture", italien: "il concerto", francais: "le concert", nuance: "" },
+
+            // 2.27. Économie et Commerce
+            { categorie: "Économie & Commerce", italien: "l'economia", francais: "l'économie", nuance: "" },
+            { categorie: "Économie & Commerce", italien: "il commercio", francais: "le commerce", nuance: "" },
+            { categorie: "Économie & Commerce", italien: "l'industria", francais: "l'industrie", nuance: "" },
+            { categorie: "Économie & Commerce", italien: "l'azienda", francais: "l'entreprise", nuance: "" },
+            { categorie: "Économie & Commerce", italien: "il cliente", francais: "le client", nuance: "" },
+            { categorie: "Économie & Commerce", italien: "il prodotto", francais: "le produit", nuance: "" },
+            { categorie: "Économie & Commerce", italien: "il servizio", francais: "le service", nuance: "" },
+            { categorie: "Économie & Commerce", italien: "il mercato", francais: "le marché", nuance: "Peut aussi désigner le lieu physique." },
+            { categorie: "Économie & Commerce", italien: "la banca", francais: "la banque", nuance: "" },
+            { categorie: "Économie & Commerce", italien: "l'investimento", francais: "l'investissement", nuance: "" },
+
+            // 2.28. Politique et Société
+            { categorie: "Politique & Société", italien: "la politica", francais: "la politique", nuance: "" },
+            { categorie: "Politique & Société", italien: "il governo", francais: "le gouvernement", nuance: "" },
+            { categorie: "Politique & Société", italien: "la legge", francais: "la loi", nuance: "" },
+            { categorie: "Politique & Société", italien: "il presidente", francais: "le président", nuance: "" },
+            { categorie: "Politique & Société", italien: "la repubblica", francais: "la république", nuance: "" },
+            { categorie: "Politique & Société", italien: "la democrazia", francais: "la démocratie", nuance: "" },
+            { categorie: "Politique & Société", italien: "la società", francais: "la société", nuance: "" },
+            { categorie: "Politique & Société", italien: "il cittadino", francais: "le citoyen", nuance: "" },
+            { categorie: "Politique & Société", italien: "l'elezione", francais: "l'élection", nuance: "" },
+            { categorie: "Politique & Société", italien: "il diritto", francais: "le droit", nuance: "Aussi: `droit` dans le sens de `tout droit`." },
+
+            // 2.29. Verbes (suite)
+            { categorie: "Verbes", italien: "amare", francais: "aimer (passionnément)", nuance: "Plus fort que 'piacere'. S'utilise pour les personnes." },
+            { categorie: "Verbes", italien: "odiare", francais: "détester", nuance: "" },
+            { categorie: "Verbes", italien: "credere", francais: "croire", nuance: "" },
+            { categorie: "Verbes", italien: "sperare", francais: "espérer", nuance: "" },
+            { categorie: "Verbes", italien: "cercare", francais: "chercher", nuance: "" },
+            { categorie: "Verbes", italien: "usare", francais: "utiliser", nuance: "" },
+            { categorie: "Verbes", italien: "diventare", francais: "devenir", nuance: "" },
+            { categorie: "Verbes", italien: "sembrare", francais: "sembler / paraître", nuance: "" },
+            { categorie: "Verbes", italien: "tenere", francais: "tenir", nuance: "" },
+            { categorie: "Verbes", italien: "portare", francais: "porter / apporter", nuance: "" },
+            { categorie: "Verbes", italien: "vincere", francais: "gagner", nuance: "" },
+            { categorie: "Verbes", italien: "perdere", francais: "perdre", nuance: "" },
+            { categorie: "Verbes", italien: "scegliere", francais: "choisir", nuance: "" },
+            { categorie: "Verbes", italien: "spiegare", francais: "expliquer", nuance: "" },
+            { categorie: "Verbes", italien: "chiedere", francais: "demander (poser une question)", nuance: "Ne pas confondre avec `domandare`." },
+
+            // 2.30. Adjectifs (suite)
+            { categorie: "Adjectifs", italien: "felice", francais: "heureux(se)", nuance: "Invariable." },
+            { categorie: "Adjectifs", italien: "sicuro/a", francais: "sûr(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "pericoloso/a", francais: "dangereux(se)", nuance: "" },
+            { categorie: "Adjectifs", italien: "famoso/a", francais: "célèbre", nuance: "" },
+            { categorie: "Adjectifs", italien: "sconosciuto/a", francais: "inconnu(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "divertente", francais: "amusant(e)", nuance: "Invariable." },
+            { categorie: "Adjectifs", italien: "noioso/a", francais: "ennuyeux(se)", nuance: "" },
+            { categorie: "Adjectifs", italien: "gentile", francais: "gentil(le)", nuance: "Invariable." },
+            { categorie: "Adjectifs", italien: "educato/a", francais: "poli(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "veloce", francais: "rapide", nuance: "Invariable." },
+            { categorie: "Adjectifs", italien: "lento/a", francais: "lent(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "forte", francais: "fort(e)", nuance: "Invariable." },
+            { categorie: "Adjectifs", italien: "debole", francais: "faible", nuance: "Invariable." },
+            { categorie: "Adjectifs", italien: "intelligente", francais: "intelligent(e)", nuance: "" },
+            { categorie: "Adjectifs", italien: "stupido/a", francais: "stupide", nuance: "" },
+
+            // 2.31. Nature (suite) et Environnement
+            { categorie: "Nature & Météo", italien: "l'ambiente", francais: "l'environnement", nuance: "" },
+            { categorie: "Nature & Météo", italien: "la foresta", francais: "la forêt", nuance: "" },
+            { categorie: "Nature & Météo", italien: "il deserto", francais: "le désert", nuance: "" },
+            { categorie: "Nature & Météo", italien: "l'isola", francais: "l'île", nuance: "" },
+            { categorie: "Nature & Météo", italien: "la spiaggia", francais: "la plage", nuance: "" },
+            { categorie: "Nature & Météo", italien: "la pietra", francais: "la pierre", nuance: "" },
+            { categorie: "Nature & Météo", italien: "il fuoco", francais: "le feu", nuance: "" },
+            { categorie: "Nature & Météo", italien: "l'aria", francais: "l'air", nuance: "" },
+            { categorie: "Nature & Météo", italien: "la terra", francais: "la terre", nuance: "Peut aussi signifier la planète Terre." },
+            { categorie: "Nature & Météo", italien: "il cavallo", francais: "le cheval", nuance: "" },
+            { categorie: "Nature & Météo", italien: "la mucca", francais: "la vache", nuance: "" },
+            { categorie: "Nature & Météo", italien: "l'uccello", francais: "l'oiseau", nuance: "" },
+
+            // 2.32. Matériaux et Substances
+            { categorie: "Matériaux", italien: "il legno", francais: "le bois", nuance: "" },
+            { categorie: "Matériaux", italien: "il metallo", francais: "le métal", nuance: "" },
+            { categorie: "Matériaux", italien: "il ferro", francais: "le fer", nuance: "" },
+            { categorie: "Matériaux", italien: "l'oro", francais: "l'or", nuance: "" },
+            { categorie: "Matériaux", italien: "l'argento", francais: "l'argent (métal)", nuance: "" },
+            { categorie: "Matériaux", italien: "la plastica", francais: "le plastique", nuance: "" },
+            { categorie: "Matériaux", italien: "il vetro", francais: "le verre", nuance: "" },
+            { categorie: "Matériaux", italien: "la carta", francais: "le papier", nuance: "" },
+            { categorie: "Matériaux", italien: "il tessuto", francais: "le tissu", nuance: "" },
+            
+            // 2.33. Formes et Mesures
+            { categorie: "Formes & Mesures", italien: "la forma", francais: "la forme", nuance: "" },
+            { categorie: "Formes & Mesures", italien: "il cerchio", francais: "le cercle", nuance: "" },
+            { categorie: "Formes & Mesures", italien: "il quadrato", francais: "le carré", nuance: "" },
+            { categorie: "Formes & Mesures", italien: "il triangolo", francais: "le triangle", nuance: "" },
+            { categorie: "Formes & Mesures", italien: "la linea", francais: "la ligne", nuance: "" },
+            { categorie: "Formes & Mesures", italien: "il punto", francais: "le point", nuance: "" },
+            { categorie: "Formes & Mesures", italien: "la misura", francais: "la mesure", nuance: "" },
+            { categorie: "Formes & Mesures", italien: "il peso", francais: "le poids", nuance: "" },
+            { categorie: "Formes & Mesures", italien: "l'altezza", francais: "la hauteur", nuance: "" },
+            { categorie: "Formes & Mesures", italien: "la larghezza", francais: "la largeur", nuance: "" },
+            { categorie: "Formes & Mesures", italien: "la profondità", francais: "la profondeur", nuance: "" },
+            
+            // 2.34. Adjectifs de Personnalité
+            { categorie: "Adjectifs de Personnalité", italien: "simpatico/a", francais: "sympathique", nuance: "" },
+            { categorie: "Adjectifs de Personnalité", italien: "antipatico/a", francais: "antipathique", nuance: "" },
+            { categorie: "Adjectifs de Personnalité", italien: "generoso/a", francais: "généreux/se", nuance: "" },
+            { categorie: "Adjectifs de Personnalité", italien: "avaro/a", francais: "avare", nuance: "" },
+            { categorie: "Adjectifs de Personnalité", italien: "onesto/a", francais: "honnête", nuance: "" },
+            { categorie: "Adjectifs de Personnalité", italien: "disonesto/a", francais: "malhonnête", nuance: "" },
+            { categorie: "Adjectifs de Personnalité", italien: "coraggioso/a", francais: "courageux/se", nuance: "" },
+            { categorie: "Adjectifs de Personnalité", italien: "pauroso/a", francais: "peureux/se", nuance: "" },
+            { categorie: "Adjectifs de Personnalité", italien: "calmo/a", francais: "calme", nuance: "" },
+            { categorie: "Adjectifs de Personnalité", italien: "nervoso/a", francais: "nerveux/se", nuance: "" },
+
+            // 2.35. Verbes de Pensée et de Communication
+            { categorie: "Verbes de Pensée & Com.", italien: "pensare", francais: "penser", nuance: "" },
+            { categorie: "Verbes de Pensée & Com.", italien: "decidere", francais: "décider", nuance: "" },
+            { categorie: "Verbes de Pensée & Com.", italien: "immaginare", francais: "imaginer", nuance: "" },
+            { categorie: "Verbes de Pensée & Com.", italien: "rispondere", francais: "répondre", nuance: "" },
+            { categorie: "Verbes de Pensée & Com.", italien: "domandare", francais: "demander (s'informer)", nuance: "Souvent interchangeable avec 'chiedere'." },
+            { categorie: "Verbes de Pensée & Com.", italien: "promettere", francais: "promettre", nuance: "" },
+            { categorie: "Verbes de Pensée & Com.", italien: "suggerire", francais: "suggérer", nuance: "" },
+            { categorie: "Verbes de Pensée & Com.", italien: "raccontare", francais: "raconter", nuance: "" },
+            { categorie: "Verbes de Pensée & Com.", italien: "tradurre", francais: "traduire", nuance: "" },
+            
+            // 2.36. La Cuisine (Ustensiles et Actions)
+            { categorie: "La Cuisine", italien: "cucinare", francais: "cuisiner", nuance: "" },
+            { categorie: "La Cuisine", italien: "la pentola", francais: "la casserole / la marmite", nuance: "" },
+            { categorie: "La Cuisine", italien: "la padella", francais: "la poêle", nuance: "" },
+            { categorie: "La Cuisine", italien: "il forno", francais: "le four", nuance: "" },
+            { categorie: "La Cuisine", italien: "il frigorifero", francais: "le réfrigérateur", nuance: "" },
+            { categorie: "La Cuisine", italien: "tagliare", francais: "couper", nuance: "" },
+            { categorie: "La Cuisine", italien: "mescolare", francais: "mélanger", nuance: "" },
+            { categorie: "La Cuisine", italien: "aggiungere", francais: "ajouter", nuance: "" },
+            { categorie: "La Cuisine", italien: "assaggiare", francais: "goûter", nuance: "" },
+            { categorie: "La Cuisine", italien: "la ricetta", francais: "la recette", nuance: "" },
+            
+            // 2.37. Le Monde du Travail (détaillé)
+            { categorie: "Travail (détaillé)", italien: "la professione", francais: "la profession", nuance: "" },
+            { categorie: "Travail (détaillé)", italien: "il colloquio", francais: "l'entretien (d'embauche)", nuance: "" },
+            { categorie: "Travail (détaillé)", italien: "lo stipendio", francais: "le salaire", nuance: "" },
+            { categorie: "Travail (détaillé)", italien: "il capo", francais: "le chef / le patron", nuance: "" },
+            { categorie: "Travail (détaillé)", italien: "il collega / la collega", francais: "le/la collègue", nuance: "" },
+            { categorie: "Travail (détaillé)", italien: "la riunione", francais: "la réunion", nuance: "" },
+            { categorie: "Travail (détaillé)", italien: "il progetto", francais: "le projet", nuance: "" },
+            
+            // 2.38. Science et Éducation
+            { categorie: "Science & Éducation", italien: "la scienza", francais: "la science", nuance: "" },
+            { categorie: "Science & Éducation", italien: "l'educazione", francais: "l'éducation", nuance: "" },
+            { categorie: "Science & Éducation", italien: "la ricerca", francais: "la recherche", nuance: "" },
+            { categorie: "Science & Éducation", italien: "l'esperimento", francais: "l'expérience (scientifique)", nuance: "" },
+            { categorie: "Science & Éducation", italien: "l'insegnante", francais: "l'enseignant(e)", nuance: "" },
+            { categorie: "Science & Éducation", italien: "lo studente / la studentessa", francais: "l'étudiant(e)", nuance: "" },
+            { categorie: "Science & Éducation", italien: "l'esame", francais: "l'examen", nuance: "" },
+            { categorie: "Science & Éducation", italien: "la lezione", francais: "la leçon / le cours", nuance: "" }
+
+            // 2.39. Verbes de Mouvement et d'Action
+            { categorie: "Verbes (Mouvement & Action)", italien: "correre", francais: "courir", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "camminare", francais: "marcher", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "saltare", francais: "sauter", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "nuotare", francais: "nager", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "volare", francais: "voler", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "guidare", francais: "conduire", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "entrare", francais: "entrer", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "uscire", francais: "sortir", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "salire", francais: "monter", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "scendere", francais: "descendre", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "cadere", francais: "tomber", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "spingere", francais: "pousser", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "tirare", francais: "tirer", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "muovere", francais: "bouger", nuance: "" },
+            { categorie: "Verbes (Mouvement & Action)", italien: "fermarsi", francais: "s'arrêter", nuance: "" },
+
+            // 2.40. Adverbes (suite)
+            { categorie: "Adverbes", italien: "davvero", francais: "vraiment", nuance: "" },
+            { categorie: "Adverbes", italien: "quasi", francais: "presque", nuance: "" },
+            { categorie: "Adverbes", italien: "neanche / nemmeno", francais: "même pas", nuance: "Nécessite `non`. Ex: `Non l'ho neanche visto`." },
+            { categorie: "Adverbes", italien: "almeno", francais: "au moins", nuance: "" },
+            { categorie: "Adverbes", italien: "soprattutto", francais: "surtout", nuance: "" },
+            { categorie: "Adverbes", italien: "invece", francais: "au contraire / par contre", nuance: "" },
+            { categorie: "Adverbes", italien: "comunque", francais: "de toute façon / quand même", nuance: "" },
+            { categorie: "Adverbes", italien: "lentamente", francais: "lentement", nuance: "" },
+            { categorie: "Adverbes", italien: "velocemente", francais: "rapidement", nuance: "" },
+            { categorie: "Adverbes", italien: "perfettamente", francais: "parfaitement", nuance: "" },
+
+            // 2.41. Prépositions Complexes et Expressions
+            { categorie: "Prépositions & Expressions", italien: "davanti a", francais: "devant", nuance: "" },
+            { categorie: "Prépositions & Expressions", italien: "dietro a", francais: "derrière", nuance: "" },
+            { categorie: "Prépositions & Expressions", italien: "accanto a", francais: "à côté de", nuance: "" },
+            { categorie: "Prépositions & Expressions", italien: "sopra", francais: "au-dessus de", nuance: "" },
+            { categorie: "Prépositions & Expressions", italien: "sotto", francais: "en dessous de", nuance: "" },
+            { categorie: "Prépositions & Expressions", italien: "dentro", francais: "à l'intérieur de", nuance: "" },
+            { categorie: "Prépositions & Expressions", italien: "fuori", francais: "à l'extérieur de", nuance: "" },
+            { categorie: "Prépositions & Expressions", italien: "a causa di", francais: "à cause de", nuance: "" },
+            { categorie: "Prépositions & Expressions", italien: "nonostante", francais: "malgré", nuance: "" },
+            { categorie: "Prépositions & Expressions", italien: "durante", francais: "pendant", nuance: "" },
+            { categorie: "Prépositions & Expressions", italien: "fino a", francais: "jusqu'à", nuance: "" },
+
+            // 2.42. Animaux (détaillé)
+            { categorie: "Animaux", italien: "l'animale", francais: "l'animal", nuance: "" },
+            { categorie: "Animaux", italien: "il pesce", francais: "le poisson", nuance: "" },
+            { categorie: "Animaux", italien: "il leone", francais: "le lion", nuance: "" },
+            { categorie: "Animaux", italien: "la tigre", francais: "le tigre", nuance: "" },
+            { categorie: "Animaux", italien: "l'elefante", francais: "l'éléphant", nuance: "" },
+            { categorie: "Animaux", italien: "la scimmia", francais: "le singe", nuance: "" },
+            { categorie: "Animaux", italien: "il serpente", francais: "le serpent", nuance: "" },
+            { categorie: "Animaux", italien: "il lupo", francais: "le loup", nuance: "" },
+            { categorie: "Animaux", italien: "la volpe", francais: "le renard", nuance: "" },
+            { categorie: "Animaux", italien: "l'orso", francais: "l'ours", nuance: "" },
+            { categorie: "Animaux", italien: "la pecora", francais: "le mouton", nuance: "" },
+
+            // 2.43. Objets du Quotidien
+            { categorie: "Objets du Quotidien", italien: "l'orologio", francais: "la montre / l'horloge", nuance: "" },
+            { categorie: "Objets du Quotidien", italien: "gli occhiali", francais: "les lunettes", nuance: "" },
+            { categorie: "Objets du Quotidien", italien: "la borsa", francais: "le sac", nuance: "" },
+            { categorie: "Objets du Quotidien", italien: "il portafoglio", francais: "le portefeuille", nuance: "" },
+            { categorie: "Objets du Quotidien", italien: "l'ombrello", francais: "le parapluie", nuance: "" },
+            { categorie: "Objets du Quotidien", italien: "lo specchio", francais: "le miroir", nuance: "" },
+            { categorie: "Objets du Quotidien", italien: "il pettine", francais: "le peigne", nuance: "" },
+            { categorie: "Objets du Quotidien", italien: "il sapone", francais: "le savon", nuance: "" },
+            { categorie: "Objets du Quotidien", italien: "la televisione", francais: "la télévision", nuance: "" },
+            { categorie: "Objets du Quotidien", italien: "la radio", francais: "la radio", nuance: "" },
+
+            // 2.44. Éducation (détaillé)
+            { categorie: "Éducation (détaillé)", italien: "la classe", francais: "la classe / la salle de classe", nuance: "" },
+            { categorie: "Éducation (détaillé)", italien: "la lavagna", francais: "le tableau (noir/blanc)", nuance: "" },
+            { categorie: "Éducation (détaillé)", italien: "il gesso", francais: "la craie", nuance: "" },
+            { categorie: "Éducation (détaillé)", italien: "il banco", francais: "le pupitre / le bureau d'écolier", nuance: "" },
+            { categorie: "Éducation (détaillé)", italien: "i compiti", francais: "les devoirs", nuance: "" },
+            { categorie: "Éducation (détaillé)", italien: "la laurea", francais: "le diplôme universitaire", nuance: "" },
+            { categorie: "Éducation (détaillé)", italien: "il voto", francais: "la note", nuance: "" },
+            { categorie: "Éducation (détaillé)", italien: "imparare", francais: "apprendre", nuance: "" },
+            { categorie: "Éducation (détaillé)", italien: "insegnare", francais: "enseigner", nuance: "" },
+
+            // 2.45. Sentiments et États d'Âme (détaillé)
+            { categorie: "Sentiments & États d'Âme", italien: "la gioia", francais: "la joie", nuance: "" },
+            { categorie: "Sentiments & États d'Âme", italien: "il sorriso", francais: "le sourire", nuance: "" },
+            { categorie: "Sentiments & États d'Âme", italien: "la lacrima", francais: "la larme", nuance: "" },
+            { categorie: "Sentiments & États d'Âme", italien: "la sorpresa", francais: "la surprise", nuance: "" },
+            { categorie: "Sentiments & États d'Âme", italien: "la speranza", francais: "l'espoir", nuance: "" },
+            { categorie: "Sentiments & États d'Âme", italien: "la delusione", francais: "la déception", nuance: "" },
+            { categorie: "Sentiments & États d'Âme", italien: "la vergogna", francais: "la honte", nuance: "" },
+            { categorie: "Sentiments & États d'Âme", italien: "l'orgoglio", francais: "la fierté / l'orgueil", nuance: "" },
+            { categorie: "Sentiments & États d'Âme", italien: "la noia", francais: "l'ennui", nuance: "" },
+
+            // 2.46. Outils et Bricolage
+            { categorie: "Outils & Bricolage", italien: "l'attrezzo", francais: "l'outil", nuance: "" },
+            { categorie: "Outils & Bricolage", italien: "il martello", francais: "le marteau", nuance: "" },
+            { categorie: "Outils & Bricolage", italien: "il chiodo", francais: "le clou", nuance: "" },
+            { categorie: "Outils & Bricolage", italien: "la vite", francais: "la vis", nuance: "" },
+            { categorie: "Outils & Bricolage", italien: "il cacciavite", francais: "le tournevis", nuance: "" },
+            { categorie: "Outils & Bricolage", italien: "la pinza", francais: "la pince", nuance: "" },
+            { categorie: "Outils & Bricolage", italien: "la sega", francais: "la scie", nuance: "" },
+            { categorie: "Outils & Bricolage", italien: "riparare", francais: "réparer", nuance: "" },
+            { categorie: "Outils & Bricolage", italien: "costruire", francais: "construire", nuance: "" },
+            
+            // 2.47. Termes Militaires et de Conflit
+            { categorie: "Militaire & Conflit", italien: "la guerra", francais: "la guerre", nuance: "" },
+            { categorie: "Militaire & Conflit", italien: "la pace", francais: "la paix", nuance: "" },
+            { categorie: "Militaire & Conflit", italien: "l'esercito", francais: "l'armée", nuance: "" },
+            { categorie: "Militaire & Conflit", italien: "il soldato", francais: "le soldat", nuance: "" },
+            { categorie: "Militaire & Conflit", italien: "l'arma", francais: "l'arme", nuance: "" },
+            { categorie: "Militaire & Conflit", italien: "la battaglia", francais: "la bataille", nuance: "" },
+            { categorie: "Militaire & Conflit", italien: "il nemico", francais: "l'ennemi", nuance: "" },
+            { categorie: "Militaire & Conflit", italien: "la vittoria", francais: "la victoire", nuance: "" },
+            { categorie: "Militaire & Conflit", italien: "la sconfitta", francais: "la défaite", nuance: "" },
+
+            // 2.48. Verbes (modaux et complexes)
+            { categorie: "Verbes (Modaux & Complexes)", italien: "bisognare", francais: "falloir", nuance: "S'utilise de manière impersonnelle. `Bisogna fare...` (Il faut faire...)" },
+            { categorie: "Verbes (Modaux & Complexes)", italien: "bastare", francais: "suffire", nuance: "`Basta!` (Ça suffit !)" },
+            { categorie: "Verbes (Modaux & Complexes)", italien: "mancare", francais: "manquer", nuance: "Construction inversée. `Mi manchi` (Tu me manques)." },
+            { categorie: "Verbes (Modaux & Complexes)", italien: "servire", francais: "servir / être utile", nuance: "Construction inversée pour 'avoir besoin'. `Mi serve un caffè` (J'ai besoin d'un café)." },
+            { categorie: "Verbes (Modaux & Complexes)", italien: "succedere", francais: "se passer / arriver", nuance: "`Cosa succede?` (Que se passe-t-il?)" },
+            { categorie: "Verbes (Modaux & Complexes)", italien: "continuare", francais: "continuer", nuance: "" },
+            { categorie: "Verbes (Modaux & Complexes)", italien: "cominciare / iniziare", francais: "commencer", nuance: "" },
+            { categorie: "Verbes (Modaux & Complexes)", italien: "finire", francais: "finir", nuance: "" },
+
+            // 2.49. Adjectifs (avancés)
+            { categorie: "Adjectifs (Avancés)", italien: "incredibile", francais: "incroyable", nuance: "" },
+            { categorie: "Adjectifs (Avancés)", italien: "meraviglioso/a", francais: "merveilleux/se", nuance: "" },
+            { categorie: "Adjectifs (Avancés)", italien: "orribile", francais: "horrible", nuance: "" },
+            { categorie: "Adjectifs (Avancés)", italien: "normale", francais: "normal(e)", nuance: "" },
+            { categorie: "Adjectifs (Avancés)", italien: "strano/a", francais: "étrange / bizarre", nuance: "" },
+            { categorie: "Adjectifs (Avancés)", italien: "comodo/a", francais: "confortable", nuance: "" },
+            { categorie: "Adjectifs (Avancés)", italien: "scomodo/a", francais: "inconfortable", nuance: "" },
+            { categorie: "Adjectifs (Avancés)", italien: "utile", francais: "utile", nuance: "" },
+            { categorie: "Adjectifs (Avancés)", italien: "inutile", francais: "inutile", nuance: "" },
+            { categorie: "Adjectifs (Avancés)", italien: "necessario/a", francais: "nécessaire", nuance: "" },
+            
+            // 2.50. Le Corps (détaillé)
+            { categorie: "Le Corps (détaillé)", italien: "il sangue", francais: "le sang", nuance: "" },
+            { categorie: "Le Corps (détaillé)", italien: "l'osso", francais: "l'os", nuance: "" },
+            { categorie: "Le Corps (détaillé)", italien: "il muscolo", francais: "le muscle", nuance: "" },
+            { categorie: "Le Corps (détaillé)", italien: "la pelle", francais: "la peau", nuance: "" },
+            { categorie: "Le Corps (détaillé)", italien: "la fronte", francais: "le front", nuance: "" },
+            { categorie: "Le Corps (détaillé)", italien: "il mento", francais: "le menton", nuance: "" },
+            { categorie: "Le Corps (détaillé)", italien: "la guancia", francais: "la joue", nuance: "" },
+            { categorie: "Le Corps (détaillé)", italien: "il labbro", francais: "la lèvre", nuance: "Pluriel : le labbra" },
+            { categorie: "Le Corps (détaillé)", italien: "la lingua", francais: "la langue", nuance: "" },
+
+            // 2.51. La Ville (détaillé)
+            { categorie: "La Ville (détaillé)", italien: "il marciapiede", francais: "le trottoir", nuance: "" },
+            { categorie: "La Ville (détaillé)", italien: "il semaforo", francais: "le feu de circulation", nuance: "" },
+            { categorie: "La Ville (détaillé)", italien: "l'incrocio", francais: "le carrefour", nuance: "" },
+            { categorie: "La Ville (détaillé)", italien: "l'edificio", francais: "le bâtiment", nuance: "" },
+            { categorie: "La Ville (détaillé)", italien: "il grattacielo", francais: "le gratte-ciel", nuance: "" },
+            { categorie: "La Ville (détaillé)", italien: "il quartiere", francais: "le quartier", nuance: "" },
+            { categorie: "La Ville (détaillé)", italien: "il centro", francais: "le centre-ville", nuance: "" },
+            { categorie: "La Ville (détaillé)", italien: "la periferia", francais: "la banlieue / la périphérie", nuance: "" },
+
+            // 2.52. Vêtements (détaillé)
+            { categorie: "Vêtements (détaillé)", italien: "la camicia", francais: "la chemise", nuance: "" },
+            { categorie: "Vêtements (détaillé)", italien: "il vestito", francais: "la robe", nuance: "" },
+            { categorie: "Vêtements (détaillé)", italien: "il maglione", francais: "le pull", nuance: "" },
+            { categorie: "Vêtements (détaillé)", italien: "la giacca", francais: "la veste", nuance: "" },
+            { categorie: "Vêtements (détaillé)", italien: "il cappotto", francais: "le manteau", nuance: "" },
+            { categorie: "Vêtements (détaillé)", italien: "i calzini", francais: "les chaussettes", nuance: "" },
+            { categorie: "Vêtements (détaillé)", italien: "la cintura", francais: "la ceinture", nuance: "" },
+            { categorie: "Vêtements (détaillé)", italien: "la sciarpa", francais: "l'écharpe", nuance: "" },
+
+            // 2.53. Religion et Croyances
+            { categorie: "Religion & Croyances", italien: "la religione", francais: "la religion", nuance: "" },
+            { categorie: "Religion & Croyances", italien: "la fede", francais: "la foi", nuance: "" },
+            { categorie: "Religion & Croyances", italien: "la preghiera", francais: "la prière", nuance: "" },
+            { categorie: "Religion & Croyances", italien: "dio", francais: "dieu", nuance: "" },
+            { categorie: "Religion & Croyances", italien: "il diavolo", francais: "le diable", nuance: "" },
+            { categorie: "Religion & Croyances", italien: "l'anima", francais: "l'âme", nuance: "" },
+            { categorie: "Religion & Croyances", italien: "lo spirito", francais: "l'esprit", nuance: "" },
+            { categorie: "Religion & Croyances", italien: "il paradiso", francais: "le paradis", nuance: "" },
+            { categorie: "Religion & Croyances", italien: "l'inferno", francais: "l'enfer", nuance: "" },
+
+            // 2.54. Termes Juridiques
+            { categorie: "Termes Juridiques", italien: "la giustizia", francais: "la justice", nuance: "" },
+            { categorie: "Termes Juridiques", italien: "il tribunale", francais: "le tribunal", nuance: "" },
+            { categorie: "Termes Juridiques", italien: "l'avvocato", francais: "l'avocat", nuance: "" },
+            { categorie: "Termes Juridiques", italien: "il giudice", francais: "le juge", nuance: "" },
+            { categorie: "Termes Juridiques", italien: "il processo", francais: "le procès", nuance: "" },
+            { categorie: "Termes Juridiques", italien: "la prigione", francais: "la prison", nuance: "" },
+            { categorie: "Termes Juridiques", italien: "il crimine", francais: "le crime", nuance: "" },
+            { categorie: "Termes Juridiques", italien: "la vittima", francais: "la victime", nuance: "" },
+            { categorie: "Termes Juridiques", italien: "il testimone", francais: "le témoin", nuance: "" },
+
+            // 2.55. Verbes de Perception
+            { categorie: "Verbes de Perception", italien: "sentire", francais: "entendre / sentir (ressentir)", nuance: "" },
+            { categorie: "Verbes de Perception", italien: "toccare", francais: "toucher", nuance: "" },
+            { categorie: "Verbes de Perception", italien: "gustare", francais: "goûter / savourer", nuance: "" },
+            { categorie: "Verbes de Perception", italien: "odorare", francais: "sentir (une odeur)", nuance: "" },
+            { categorie: "Verbes de Perception", italien: "percepire", francais: "percevoir", nuance: "" },
+
+            // 2.56. Quantités et Nombres (avancés)
+            { categorie: "Quantités & Nombres", italien: "la dozzina", francais: "la douzaine", nuance: "" },
+            { categorie: "Quantités & Nombres", italien: "il paio", francais: "la paire", nuance: "" },
+            { categorie: "Quantités & Nombres", italien: "la metà", francais: "la moitié", nuance: "" },
+            { categorie: "Quantités & Nombres", italien: "il doppio", francais: "le double", nuance: "" },
+            { categorie: "Quantités & Nombres", italien: "il triplo", francais: "le triple", nuance: "" },
+            { categorie: "Quantités & Nombres", italien: "un sacco di", francais: "un tas de / beaucoup de", nuance: "Informel." },
+
+            // 2.57. Le Son et le Bruit
+            { categorie: "Son & Bruit", italien: "il suono", francais: "le son", nuance: "" },
+            { categorie: "Son & Bruit", italien: "il rumore", francais: "le bruit", nuance: "" },
+            { categorie: "Son & Bruit", italien: "il silenzio", francais: "le silence", nuance: "" },
+            { categorie: "Son & Bruit", italien: "la voce", francais: "la voix", nuance: "" },
+            { categorie: "Son & Bruit", italien: "il grido", francais: "le cri", nuance: "" },
+            { categorie: "Son & Bruit", italien: "sussurrare", francais: "chuchoter", nuance: "" },
+
+            // 2.58. La Lumière et l'Obscurité
+            { categorie: "Lumière & Obscurité", italien: "la luce", francais: "la lumière", nuance: "" },
+            { categorie: "Lumière & Obscurité", italien: "l'ombra", francais: "l'ombre", nuance: "" },
+            { categorie: "Lumière & Obscurité", italien: "il buio", francais: "l'obscurité", nuance: "" },
+            { categorie: "Lumière & Obscurité", italien: "scuro/a", francais: "sombre / foncé(e)", nuance: "" },
+            { categorie: "Lumière & Obscurité", italien: "chiaro/a", francais: "clair(e)", nuance: "" },
+
+            // 2.59. La Nourriture (Fruits & Légumes)
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "la fragola", francais: "la fraise", nuance: "" },
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "la ciliegia", francais: "la cerise", nuance: "" },
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "l'uva", francais: "le raisin", nuance: "" },
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "la pesca", francais: "la pêche", nuance: "" },
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "l'albicocca", francais: "l'abricot", nuance: "" },
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "il melone", francais: "le melon", nuance: "" },
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "l'anguria", francais: "la pastèque", nuance: "" },
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "la lattuga", francais: "la laitue", nuance: "" },
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "il cetriolo", francais: "le concombre", nuance: "" },
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "la carota", francais: "la carotte", nuance: "" },
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "il fagiolo", francais: "le haricot", nuance: "" },
+            { categorie: "Nourriture (Fruits & Légumes)", italien: "il pisello", francais: "le petit pois", nuance: "" },
+
+            // 2.60. La Nourriture (Viandes & Poissons)
+            { categorie: "Nourriture (Viandes & Poissons)", italien: "l'agnello", francais: "l'agneau", nuance: "" },
+            { categorie: "Nourriture (Viandes & Poissons)", italien: "il vitello", francais: "le veau", nuance: "" },
+            { categorie: "Nourriture (Viandes & Poissons)", italien: "il tacchino", francais: "la dinde", nuance: "" },
+            { categorie: "Nourriture (Viandes & Poissons)", italien: "il salmone", francais: "le saumon", nuance: "" },
+            { categorie: "Nourriture (Viandes & Poissons)", italien: "il tonno", francais: "le thon", nuance: "" },
+            { categorie: "Nourriture (Viandes & Poissons)", italien: "il gamberetto", francais: "la crevette", nuance: "" },
+            { categorie: "Nourriture (Viandes & Poissons)", italien: "la cozza", francais: "la moule", nuance: "" },
+            { categorie: "Nourriture (Viandes & Poissons)", italien: "la vongola", francais: "la palourde", nuance: "" },
+
+            // 2.61. La Nourriture (Produits Laitiers & Céréales)
+            { categorie: "Nourriture (Laitiers & Céréales)", italien: "il burro", francais: "le beurre", nuance: "" },
+            { categorie: "Nourriture (Laitiers & Céréales)", italien: "lo yogurt", francais: "le yaourt", nuance: "" },
+            { categorie: "Nourriture (Laitiers & Céréales)", italien: "la panna", francais: "la crème", nuance: "" },
+            { categorie: "Nourriture (Laitiers & Céréales)", italien: "la farina", francais: "la farine", nuance: "" },
+            { categorie: "Nourriture (Laitiers & Céréales)", italien: "il grano", francais: "le blé", nuance: "" },
+            { categorie: "Nourriture (Laitiers & Céréales)", italien: "l'avena", francais: "l'avoine", nuance: "" },
+
+            // 2.62. Adjectifs de Forme et Texture
+            { categorie: "Adjectifs (Forme & Texture)", italien: "rotondo/a", francais: "rond(e)", nuance: "" },
+            { categorie: "Adjectifs (Forme & Texture)", italien: "quadrato/a", francais: "carré(e)", nuance: "" },
+            { categorie: "Adjectifs (Forme & Texture)", italien: "liscio/a", francais: "lisse", nuance: "" },
+            { categorie: "Adjectifs (Forme & Texture)", italien: "ruvido/a", francais: "rugueux/se", nuance: "" },
+            { categorie: "Adjectifs (Forme & Texture)", italien: "morbido/a", francais: "moelleux/se / doux/ce", nuance: "" },
+            { categorie: "Adjectifs (Forme & Texture)", italien: "duro/a", francais: "dur(e)", nuance: "" },
+            { categorie: "Adjectifs (Forme & Texture)", italien: "sottile", francais: "fin(e) / mince", nuance: "" },
+            { categorie: "Adjectifs (Forme & Texture)", italien: "spesso/a", francais: "épais(se)", nuance: "" },
+
+            // 2.63. Verbes de Communication (avancés)
+            { categorie: "Verbes (Communication)", italien: "discutere", francais: "discuter", nuance: "" },
+            { categorie: "Verbes (Communication)", italien: "negoziare", francais: "négocier", nuance: "" },
+            { categorie: "Verbes (Communication)", italien: "convincere", francais: "convaincre", nuance: "" },
+            { categorie: "Verbes (Communication)", italien: "mentire", francais: "mentir", nuance: "" },
+            { categorie: "Verbes (Communication)", italien: "giurare", francais: "jurer", nuance: "" },
+            { categorie: "Verbes (Communication)", italien: "criticare", francais: "critiquer", nuance: "" },
+            { categorie: "Verbes (Communication)", italien: "lodare", francais: "louer / faire l'éloge de", nuance: "" },
+
+            // 2.64. Concepts Philosophiques
+            { categorie: "Concepts Philosophiques", italien: "la verità", francais: "la vérité", nuance: "" },
+            { categorie: "Concepts Philosophiques", italien: "la realtà", francais: "la réalité", nuance: "" },
+            { categorie: "Concepts Philosophiques", italien: "l'esistenza", francais: "l'existence", nuance: "" },
+            { categorie: "Concepts Philosophiques", italien: "la libertà", francais: "la liberté", nuance: "" },
+            { categorie: "Concepts Philosophiques", italien: "il destino", francais: "le destin", nuance: "" },
+            { categorie: "Concepts Philosophiques", italien: "la coscienza", francais: "la conscience", nuance: "" },
+            { categorie: "Concepts Philosophiques", italien: "il pensiero", francais: "la pensée", nuance: "" },
+
+            // 2.65. Météo (détaillé)
+            { categorie: "Météo (détaillé)", italien: "la tempesta", francais: "la tempête", nuance: "" },
+            { categorie: "Météo (détaillé)", italien: "il temporale", francais: "l'orage", nuance: "" },
+            { categorie: "Météo (détaillé)", italien: "il fulmine", francais: "l'éclair / la foudre", nuance: "" },
+            { categorie: "Météo (détaillé)", italien: "il tuono", francais: "le tonnerre", nuance: "" },
+            { categorie: "Météo (détaillé)", italien: "la nebbia", francais: "le brouillard", nuance: "" },
+            { categorie: "Météo (détaillé)", italien: "l'umidità", francais: "l'humidité", nuance: "" },
+            { categorie: "Météo (détaillé)", italien: "la grandine", francais: "la grêle", nuance: "" },
+
+            // 2.66. Éléments Chimiques et Physique
+            { categorie: "Science (Chimie & Physique)", italien: "l'atomo", francais: "l'atome", nuance: "" },
+            { categorie: "Science (Chimie & Physique)", italien: "la molecola", francais: "la molécule", nuance: "" },
+            { categorie: "Science (Chimie & Physique)", italien: "l'energia", francais: "l'énergie", nuance: "" },
+            { categorie: "Science (Chimie & Physique)", italien: "la forza", francais: "la force", nuance: "" },
+            { categorie: "Science (Chimie & Physique)", italien: "la velocità", francais: "la vitesse", nuance: "" },
+            { categorie: "Science (Chimie & Physique)", italien: "la massa", francais: "la masse", nuance: "" },
+
+            // 2.67. Relations Interpersonnelles
+            { categorie: "Relations Interpersonnelles", italien: "l'amicizia", francais: "l'amitié", nuance: "" },
+            { categorie: "Relations Interpersonnelles", italien: "l'inimicizia", francais: "l'inimitié", nuance: "" },
+            { categorie: "Relations Interpersonnelles", italien: "la fiducia", francais: "la confiance", nuance: "" },
+            { categorie: "Relations Interpersonnelles", italien: "il rispetto", francais: "le respect", nuance: "" },
+            { categorie: "Relations Interpersonnelles", italien: "il conflitto", francais: "le conflit", nuance: "" },
+            { categorie: "Relations Interpersonnelles", italien: "la collaborazione", francais: "la collaboration", nuance: "" }
+
+        ].map((item, index) => ({...item, id: index, hiddenByUser: false}));
+        
+        const vocabGrid = document.getElementById('vocab-grid');
+        const searchInput = document.getElementById('search');
+        const categoryFilter = document.getElementById('category-filter');
+        const sortBy = document.getElementById('sort-by');
+        const themeToggle = document.getElementById('theme-toggle');
+        const hideItalianAllCheck = document.getElementById('hide-italian-all');
+        const hideFrenchAllCheck = document.getElementById('hide-french-all');
+        const restoreBtn = document.getElementById('restore-btn');
+
+        function initializeApp() {
+            populateCategories();
+            loadState(); // Charger l'état avant d'afficher
+            filterAndSort();
+            loadTheme();
+            setupEventListeners();
+        }
+
+        function setupEventListeners() {
+            searchInput.addEventListener('input', filterAndSort);
+            categoryFilter.addEventListener('change', filterAndSort);
+            sortBy.addEventListener('change', filterAndSort);
+            themeToggle.addEventListener('click', toggleTheme);
+            hideItalianAllCheck.addEventListener('change', () => toggleAllWords('italian', hideItalianAllCheck.checked));
+            hideFrenchAllCheck.addEventListener('change', () => toggleAllWords('french', hideFrenchAllCheck.checked));
+            restoreBtn.addEventListener('click', restoreAllWords);
+        }
+
+        function populateCategories() {
+            const categories = [...new Set(vocabulary.map(item => item.categorie))].sort();
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categoryFilter.appendChild(option);
+            });
+        }
+        
+        function displayVocabulary(vocabList) {
+            vocabGrid.innerHTML = ''; 
+            if (vocabList.length === 0) {
+                vocabGrid.innerHTML = '<p>Aucun mot ne correspond à votre recherche.</p>';
+                return;
+            }
+            vocabList.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `vocab-card ${item.hiddenByUser ? 'hidden-by-user' : ''}`;
+                card.dataset.id = item.id;
+                
+                card.innerHTML = `
+                    <button class="remove-btn" title="Masquer ce mot">&times;</button>
+                    <div class="card-body">
+                        <div class="word-wrapper word-italien" data-type="italian">${item.italien}</div>
+                        <div class="word-wrapper word-francais" data-type="french">${item.francais}</div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="nuance-btn" title="Voir la nuance">?</button>
+                    </div>
+                `;
+                
+                card.querySelector('.nuance-btn').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openModal(item.italien, item.francais, item.nuance);
+                });
+                card.querySelector('.remove-btn').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    hideWordCard(item.id);
+                });
+                card.querySelectorAll('.word-wrapper').forEach(wrapper => {
+                    wrapper.addEventListener('click', () => {
+                        wrapper.classList.toggle('masked');
+                    });
+                });
+                
+                vocabGrid.appendChild(card);
+            });
+            applyGlobalMasks();
+            updateCounts();
+        }
+
+        function filterAndSort() {
+            let filteredVocab = vocabulary.filter(item => !item.hiddenByUser);
+
+            const selectedCategory = categoryFilter.value;
+            if (selectedCategory !== 'all') {
+                filteredVocab = filteredVocab.filter(item => item.categorie === selectedCategory);
+            }
+
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            if (searchTerm) {
+                filteredVocab = filteredVocab.filter(item => 
+                    item.italien.toLowerCase().includes(searchTerm) || 
+                    item.francais.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            const sortValue = sortBy.value;
+            if (sortValue === 'italien-az') {
+                filteredVocab.sort((a, b) => a.italien.localeCompare(b.italien, 'it'));
+            } else if (sortValue === 'francais-az') {
+                filteredVocab.sort((a, b) => a.francais.localeCompare(b.francais, 'fr'));
+            }
+
+            displayVocabulary(filteredVocab);
+        }
+        
+        function toggleAllWords(type, isMasked) {
+            document.querySelectorAll(`.word-${type}`).forEach(el => {
+                el.classList.toggle('masked', isMasked);
+            });
+        }
+        
+        function applyGlobalMasks() {
+            toggleAllWords('italian', hideItalianAllCheck.checked);
+            toggleAllWords('french', hideFrenchAllCheck.checked);
+        }
+
+        function hideWordCard(id) {
+            const word = vocabulary.find(w => w.id === id);
+            if(word) {
+                word.hiddenByUser = true;
+                saveState();
+            }
+            filterAndSort();
+        }
+
+        function restoreAllWords() {
+            vocabulary.forEach(w => w.hiddenByUser = false);
+            saveState();
+            filterAndSort();
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const theme = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light';
+            themeToggle.textContent = theme === 'dark-mode' ? '☀️' : '🌙';
+            localStorage.setItem('theme', theme);
+        }
+
+        function updateCounts() {
+            const totalWords = vocabulary.length;
+            const userHiddenCount = vocabulary.filter(w => w.hiddenByUser).length;
+            const visibleCards = vocabGrid.querySelectorAll('.vocab-card').length;
+            const filteredHiddenCount = totalWords - userHiddenCount - visibleCards;
+
+            document.getElementById('total-words-count').textContent = totalWords;
+            document.getElementById('visible-words-count').textContent = visibleCards;
+            document.getElementById('filtered-hidden-count').textContent = filteredHiddenCount < 0 ? 0 : filteredHiddenCount;
+            document.getElementById('user-hidden-count').textContent = userHiddenCount;
+            restoreBtn.style.display = userHiddenCount > 0 ? 'inline-block' : 'none';
+        }
+
+        function loadTheme() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark-mode') {
+                document.body.classList.add('dark-mode');
+                themeToggle.textContent = '☀️';
+            }
+        }
+
+        function saveState() {
+            const hiddenIds = vocabulary.filter(w => w.hiddenByUser).map(w => w.id);
+            localStorage.setItem('hiddenItalianWords', JSON.stringify(hiddenIds));
+        }
+
+        function loadState() {
+            const hiddenIds = JSON.parse(localStorage.getItem('hiddenItalianWords') || '[]');
+            const hiddenIdSet = new Set(hiddenIds);
+            vocabulary.forEach(word => {
+                if (hiddenIdSet.has(word.id)) {
+                    word.hiddenByUser = true;
+                }
+            });
+        }
+
+        function openModal(italian, translation, nuance) {
+            document.getElementById('modalItalianWord').textContent = italian;
+            document.getElementById('modalTranslation').textContent = translation;
+            document.getElementById('modalNuanceText').textContent = nuance || "Aucune nuance spécifiée.";
+            document.getElementById('nuanceModal').classList.add('visible');
+        }
+
+        function closeModal() {
+            document.getElementById('nuanceModal').classList.remove('visible');
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+</body>
+</html>
