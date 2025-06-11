@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours d'Italien en 21 Jours - Programme Complet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables CSS pour les couleurs et espacements (Light Mode) */
+        :root {
+            --primary: #008C45; /* Vert italien */
+            --secondary: #CD212A; /* Rouge italien */
+            --accent: #005a9c; /* Bleu accent */
+            --light: #f7fafc; /* Très clair */
+            --dark: #2d3748; /* Gris foncé */
+            --success: #38a169; /* Vert succès */
+            --warning: #d69e2e; /* Orange avertissement */
+            --info: #3182ce; /* Bleu info */
+            --italien: #CD212A; /* Rouge pour le texte italien */
+            --francais: #005a9c; /* Bleu pour le texte français */
+            --bg-primary: #ffffff; /* Fond principal */
+            --bg-secondary: #f8fafc; /* Fond secondaire */
+            --text-primary: #2d3748; /* Texte principal */
+            --text-secondary: #718096; /* Texte secondaire */
+            --border-color: #e2e8f0; /* Couleur de bordure */
+            --red-highlight: #e53e3e; /* Rouge spécifique pour le bouton actif du programme */
+            --header-bg-gradient: linear-gradient(135deg, #008C45, #005a9c);
+            --header-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --card-hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            --card-hover-background: #e6f2ff;
+            --note-box-background: #e6fffa;
+            --exercise-background: #f0f4f8;
+            --dialogue-box-background: #f8f9fa;
+            --recap-list-background: #f0f4ff;
+            --congrats-background: #d4f1d4;
+            --progress-bar-background: #e2e8f0;
+            --progress-fill-gradient: linear-gradient(90deg, #38a169, #005a9c);
+            --footer-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            --sidebar-bg: #f0f5ff; /* Couleur de fond de la barre latérale */
+            --sidebar-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            --sidebar-active-bg: #e2e8f0;
+            --sidebar-hover-bg: #e2e8f0;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            --primary: #009f4e; /* Vert italien plus clair */
+            --secondary: #e53e3e; /* Rouge italien plus clair */
+            --accent: #5a8eec; /* Bleu accent plus clair */
+            --light: #1f2937; /* Fond très sombre */
+            --dark: #f9fafb; /* Texte très clair */
+            --italien: #f87171; /* Rouge plus clair pour le texte italien */
+            --francais: #60a5fa; /* Bleu plus clair pour le texte français */
+            --bg-primary: #111827; /* Fond principal sombre */
+            --bg-secondary: #1e293b; /* Fond secondaire sombre */
+            --text-primary: #f9fafb; /* Texte principal clair */
+            --text-secondary: #d1d5db; /* Texte secondaire clair */
+            --border-color: #374151; /* Couleur de bordure sombre */
+            --red-highlight: #dc2626; /* Rouge plus foncé pour le bouton actif du programme */
+            --header-bg-gradient: linear-gradient(135deg, #1f2937, #374151);
+            --header-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --card-hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+            --card-hover-background: #2d3748;
+            --note-box-background: #2a4365;
+            --exercise-background: #2d3748;
+            --dialogue-box-background: #252f3f;
+            --recap-list-background: #2a4365;
+            --congrats-background: #2f855a;
+            --progress-bar-background: #4b5563;
+            --progress-fill-gradient: linear-gradient(90deg, #10b981, #6366f1);
+            --footer-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+            --sidebar-bg: #1e293b; /* Couleur de fond de la barre latérale en mode sombre */
+            --sidebar-shadow: 2px 0 5px rgba(0,0,0,0.3);
+            --sidebar-active-bg: #374151;
+            --sidebar-hover-bg: #374151;
+        }
+        
+        /* Réinitialisation des styles par défaut et box-sizing */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Styles du corps de la page */
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            min-height: 100vh;
+            scroll-behavior: smooth;
+            transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+        
+        /* Conteneur principal pour centrer le contenu */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* En-tête de la page */
+        header {
+            background: var(--header-bg-gradient);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: var(--header-shadow);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .flag-colors {
+            display: flex;
+            height: 10px;
+            margin: 20px auto 0;
+            width: 200px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .flag-green { background: #008C45; flex: 1; }
+        .flag-white { background: #F4F5F0; flex: 1; }
+        .flag-red { background: #CD212A; flex: 1; }
+        
+        /* Navigation principale */
+        .navigation {
+            background: var(--bg-secondary);
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: var(--secondary);
+        }
+
+        /* Conteneur principal pour la barre latérale et le contenu */
+        .content-wrapper {
+            display: flex;
+            flex-direction: row;
+            min-height: calc(100vh - 200px);
+        }
+
+        /* Barre latérale de navigation */
+        .sidebar-nav {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            box-shadow: var(--sidebar-shadow);
+            padding: 20px 0;
+            flex-shrink: 0;
+            transition: background 0.5s ease-in-out;
+            border-radius: 0 10px 10px 0;
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+            height: fit-content;
+            margin-right: 20px;
+        }
+        
+        .sidebar-nav h3 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            padding: 0 15px;
+        }
+
+        .sidebar-week-list,
+        .sidebar-day-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-week-item,
+        .sidebar-day-item {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-week-btn,
+        .sidebar-day-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            text-align: left;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .sidebar-week-btn:hover,
+        .sidebar-day-btn:hover {
+            background-color: var(--sidebar-hover-bg);
+            color: var(--primary);
+        }
+
+        .sidebar-week-btn.active-week {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-day-btn.active-day {
+            background-color: var(--accent);
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-day-list {
+            padding-left: 20px;
+            border-left: 2px solid var(--border-color);
+            margin-left: 20px;
+            margin-top: 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, border-color 0.5s ease-in-out;
+        }
+
+        .sidebar-day-list.active {
+            max-height: 500px;
+        }
+
+        /* Contenu principal */
+        .main-content {
+            flex-grow: 1;
+        }
+
+        /* Barre de progression */
+        .progress-container {
+            background: var(--bg-secondary);
+            padding: 20px;
+            margin: 0 0 20px 0;
+            border-radius: 10px;
+            box-shadow: var(--header-shadow);
+            transition: background 0.5s ease-in-out;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: var(--progress-bar-background);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: background 0.5s ease-in-out;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--progress-fill-gradient);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Résumé de la semaine */
+        .week-summary-content {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .week-summary-content.active {
+            display: block;
+        }
+
+        .day-buttons-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .day-buttons-summary .nav-button {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .day-buttons-summary .nav-button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .day-buttons-summary .nav-button.active-day {
+            background: var(--secondary);
+        }
+        
+        /* Contenu des jours */
+        .week-content {
+            display: none;
+        }
+        
+        .week-content.active {
+            display: block;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Cartes de contenu */
+        .card {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            box-shadow: var(--header-shadow);
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease-in-out;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+        
+        .card-header {
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .card-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            font-weight: 600;
+        }
+        
+        /* Listes de vocabulaire */
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .vocab-item {
+            background: var(--bg-secondary);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s, background 0.5s ease-in-out;
+        }
+        
+        .vocab-item:hover {
+            background: var(--card-hover-background);
+            transform: translateX(5px);
+        }
+        
+        .vocab-item .term {
+            font-weight: bold;
+            color: var(--italien);
+            font-size: 1.1rem;
+            font-family: 'Noto Sans', sans-serif;
+        }
+        
+        .vocab-item .pronunciation {
+            color: var(--text-secondary);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+        
+        .vocab-item .translation {
+            color: var(--francais);
+            font-weight: 500;
+            padding-left: 10px;
+            border-left: 1px solid var(--border-color);
+        }
+        
+        /* Grille pour l'alphabet */
+        .letter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .letter-item {
+            background: var(--bg-secondary);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            text-align: center;
+            transition: all 0.2s, background 0.5s ease-in-out;
+        }
+        
+        .letter-item:hover {
+            background: var(--card-hover-background);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .letter-item .cyrillic {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--italien);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Noto Sans', sans-serif;
+        }
+        
+        .letter-item .cyrillic span {
+            margin: 0 5px;
+        }
+        
+        .letter-item .pronunciation {
+            color: var(--text-secondary);
+            font-style: italic;
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .letter-item .example {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: var(--francais);
+            text-align: center;
+        }
+        
+        /* Grille pour les nombres */
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .number-item {
+            text-align: center;
+            background: var(--bg-secondary);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.2s, background 0.5s ease-in-out;
+        }
+        
+        .number-item:hover {
+            background: var(--card-hover-background);
+            transform: translateY(-2px);
+        }
+        
+        .number-item .digit {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        
+        .number-item .italian {
+            color: var(--italien);
+            margin-top: 5px;
+            font-weight: 500;
+            font-family: 'Noto Sans', sans-serif;
+        }
+        
+        .number-item .pronunciation {
+            color: var(--text-secondary);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 3px;
+        }
+        
+        /* Boîtes de notes et d'exercices */
+        .note-box {
+            background: var(--note-box-background);
+            border-left: 4px solid var(--info);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            transition: background 0.5s ease-in-out;
+        }
+        
+        .note-title {
+            font-weight: bold;
+            color: var(--info);
+            margin-bottom: 8px;
+        }
+        
+        .exercise {
+            background: var(--exercise-background);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--warning);
+            transition: background 0.5s ease-in-out;
+        }
+        
+        .exercise-title {
+            font-weight: bold;
+            color: var(--warning);
+            margin-bottom: 10px;
+        }
+        
+        /* Boîtes de dialogue */
+        .dialogue-box {
+            background: var(--dialogue-box-background);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: background 0.5s ease-in-out, border-color 0.5s ease-in-out;
+        }
+        
+        .dialogue-box .speaker {
+            font-weight: bold;
+            color: var(--primary);
+            display: inline-block;
+            min-width: 25px;
+        }
+        
+        .dialogue-box .italian {
+            color: var(--italien);
+            font-weight: 500;
+            display: block;
+            margin: 3px 0;
+            font-family: 'Noto Sans', sans-serif;
+        }
+        
+        .dialogue-box .translation {
+            color: var(--francais);
+            font-style: italic;
+            display: block;
+            margin-bottom: 5px;
+            padding-left: 25px;
+            font-size: 0.95em;
+        }
+        
+        .dialogue-line {
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        
+        .dialogue-line:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        /* Listes de récapitulatif */
+        .recap-list {
+            background: var(--recap-list-background);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--success);
+            transition: background 0.5s ease-in-out;
+        }
+        
+        .recap-list ul {
+            margin-left: 20px;
+        }
+        
+        .recap-list li {
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .recap-list li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Navigateur de jours */
+        .day-navigator {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        
+        .nav-button {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s, transform 0.1s;
+        }
+        
+        .nav-button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .nav-button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-button.validate {
+            background: var(--success);
+        }
+
+        .nav-button.validate:hover {
+            background: #2f855a;
+        }
+        
+        /* Bouton retour en haut */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+            font-size: 1.5rem;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+        /* Message de félicitations */
+        .congratulations-message {
+            background: var(--congrats-background);
+            border-left: 8px solid var(--success);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: bounceIn 0.8s ease-out;
+            transition: background 0.5s ease-in-out;
+        }
+
+        .congratulations-message h3 {
+            color: var(--success);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .congratulations-message p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .congratulations-message ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .congratulations-message ul li {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.95); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Pied de page */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        /* Bouton de changement de thème */
+        .theme-toggle {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            transition: color 0.5s ease-in-out;
+        }
+
+        /* Design responsif */
+        @media (max-width: 768px) {
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-btn {
+                width: 80%;
+                text-align: center;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar-nav {
+                position: static;
+                width: 100%;
+                margin-right: 0;
+                border-radius: 0;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                margin-bottom: 20px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 0 20px;
+            }
+
+            .sidebar-day-list {
+                max-height: 0;
+                transition: max-height 0.5s ease-out;
+            }
+
+            .sidebar-day-list.active {
+                max-height: 500px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .letter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .letter-item {
+                padding: 10px;
+            }
+            
+            .letter-item .cyrillic {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Apprendre l'Italien</h1>
+            <p>Votre guide complet pour maîtriser la langue de Dante</p>
+            <div class="flag-colors">
+                <div class="flag-green"></div>
+                <div class="flag-white"></div>
+                <div class="flag-red"></div>
+            </div>
+        </div>
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+    </header>
+
+    <nav class="navigation">
+        <div class="container">
+            <div class="nav-buttons">
+                 <a href="index.html" class="nav-btn">🏠 Accueil</a>
+                 <a href="vocabulaire.html" class="nav-btn">📚 Vocabulaire</a>
+                 <a href="cours-italien-21-jours.html" class="nav-btn active">📅 Programme 21 jours</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container content-wrapper">
+        <nav class="sidebar-nav">
+            <h3>Programme 21 Jours</h3>
+            <ul class="sidebar-week-list">
+                <li class="sidebar-week-item">
+                    <button class="sidebar-week-btn" data-week="week1">Semaine 1</button>
+                    <ul class="sidebar-day-list" id="sidebar-day-list-week1"></ul>
+                </li>
+                <li class="sidebar-week-item">
+                    <button class="sidebar-week-btn" data-week="week2">Semaine 2</button>
+                    <ul class="sidebar-day-list" id="sidebar-day-list-week2"></ul>
+                </li>
+                <li class="sidebar-week-item">
+                    <button class="sidebar-week-btn" data-week="week3">Semaine 3</button>
+                    <ul class="sidebar-day-list" id="sidebar-day-list-week3"></ul>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="progress-container">
+                <div class="progress-header">
+                    <h3>Votre progression</h3>
+                    <span id="progress-text">0/21 jours complétés</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%">0%</div>
+                </div>
+            </div>
+            
+            <div id="weekSummary1" class="week-summary-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Semaine 1: Les Fondations de l'Italien</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="section">
+                            <h3 class="section-title">Objectif de la semaine 1</h3>
+                            <p>Se familiariser avec la prononciation et les sons de base, apprendre les salutations, se présenter, utiliser les articles et les verbes essentiels "essere" et "avere", et compter jusqu'à 100.</p>
+                        </div>
+                        <div class="section">
+                            <h3 class="section-title">Parcourir les jours de la semaine 1</h3>
+                            <p>Cliquez sur les boutons ci-dessous pour explorer chaque journée de cours en détail :</p>
+                            <div class="day-buttons-summary" id="dayButtonsWeek1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="weekSummary2" class="week-summary-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Semaine 2: L'Interaction Quotidienne</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="section">
+                            <h3 class="section-title">Objectif de la semaine 2</h3>
+                            <p>Maîtriser les conjugaisons des verbes réguliers au présent, exprimer ses goûts, utiliser les prépositions de base, les verbes modaux et commencer à parler au passé avec le "Passato Prossimo".</p>
+                        </div>
+                        <div class="section">
+                            <h3 class="section-title">Parcourir les jours de la semaine 2</h3>
+                            <p>Cliquez sur les boutons ci-dessous pour explorer chaque journée de cours en détail :</p>
+                            <div class="day-buttons-summary" id="dayButtonsWeek2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="weekSummary3" class="week-summary-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Semaine 3: L'Expression Nuancée</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="section">
+                            <h3 class="section-title">Objectif de la semaine 3</h3>
+                            <p>Apprendre à utiliser les pronoms, donner des ordres avec l'impératif, se débrouiller en voyage, différencier les temps du passé ("Passato Prossimo" et "Imperfetto") et parler de l'avenir.</p>
+                        </div>
+                        <div class="section">
+                            <h3 class="section-title">Parcourir les jours de la semaine 3</h3>
+                            <p>Cliquez sur les boutons ci-dessous pour explorer chaque journée de cours en détail :</p>
+                            <div class="day-buttons-summary" id="dayButtonsWeek3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="week1" class="week-content">
+                <!-- JOUR 1 -->
+                <div id="jour1" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 1: I Primi Contatti (Les Premiers Contacts)</h2></div>
+                        <div class="card-body">
+                            <div class="section">
+                                <h3 class="section-title">Objectif du jour</h3>
+                                <p>Maîtriser la prononciation de base et les salutations.</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Contenu du cours : L'alphabet et les sons</h3>
+                                <p>L'alphabet italien est similaire au français, mais certains groupes de lettres ont une prononciation spécifique qu'il faut connaître.</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Phrases (Salutations)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Ciao!</div></div><div class="translation">Salut / Au revoir (informel)</div></div>
+                                    <div class="vocab-item"><div><div class="term">Buongiorno</div></div><div class="translation">Bonjour</div></div>
+                                    <div class="vocab-item"><div><div class="term">Buonasera</div></div><div class="translation">Bonsoir</div></div>
+                                    <div class="vocab-item"><div><div class="term">Arrivederci</div></div><div class="translation">Au revoir (formel)</div></div>
+                                    <div class="vocab-item"><div><div class="term">Come stai?</div></div><div class="translation">Comment vas-tu ?</div></div>
+                                    <div class="vocab-item"><div><div class="term">Sto bene, grazie. E tu?</div></div><div class="translation">Je vais bien, merci. Et toi ?</div></div>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Exercices pratiques</h3>
+                                <div class="exercise"><div class="exercise-title">Exercice (prononciation)</div><p>Répéter à voix haute les salutations et des mots comme "gelato", "chiesa", "gnocchi", "figlio".</p></div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Focus (Phonétique) : Les sons "doux" et "durs" des lettres C et G</h3>
+                                <div class="note-box"><div class="note-title">Comment prononcer C et G</div>
+                                    <p>En italien, la voyelle qui suit le C ou le G détermine sa prononciation.</p>
+                                    <ul style="margin-left: 20px; margin-top: 10px;">
+                                        <li><b>Son "dur"</b> (comme dans "cave" ou "gare") : Devant A, O, U. Ex : <i>casa</i> (maison), <i>gatto</i> (chat). Pour garder ce son devant E ou I, on ajoute un H : <i>chiesa</i> (église), <i>ghiaccio</i> (glace).</li>
+                                        <li><b>Son "doux"</b> (comme "tch" ou "dj") : Devant E ou I. Ex : <i>cena</i> (dîner), <i>gelato</i> (glace).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- JOUR 2 -->
+                <div id="jour2" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 2: Maschile o Femminile? (Masculin ou Féminin ?)</h2></div>
+                        <div class="card-body">
+                            <div class="section">
+                                <h3 class="section-title">Objectif du jour</h3>
+                                <p>Comprendre le genre, le nombre et les articles.</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Contenu du cours : Genre, nombre et articles</h3>
+                                <p>Le genre des noms (terminaisons en -o, -a, -e). Les articles définis (*il, lo, la, l', i, gli, le*) et indéfinis (*un, uno, una, un'*).</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Vocabulaire (Objets courants)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Il libro</div></div><div class="translation">Le livre</div></div>
+                                    <div class="vocab-item"><div><div class="term">La casa</div></div><div class="translation">La maison</div></div>
+                                    <div class="vocab-item"><div><div class="term">Il tavolo</div></div><div class="translation">La table</div></div>
+                                    <div class="vocab-item"><div><div class="term">La sedia</div></div><div class="translation">La chaise</div></div>
+                                    <div class="vocab-item"><div><div class="term">Lo studente</div></div><div class="translation">L'étudiant</div></div>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Exercices pratiques</h3>
+                                <div class="exercise"><div class="exercise-title">Exercice (écriture)</div><p>Mettre le bon article devant une liste de noms : __ ragazzo, __ amica, __ zaino, __ penna.</p></div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Focus (Culture) : L'importance du caffè en Italie</h3>
+                                <div class="note-box"><div class="note-title">Un rituel social</div>
+                                    <p>Bien plus qu'une boisson, le café est un rituel social. On le boit debout, au comptoir (*al banco*). L'*espresso* est la norme. Le *cappuccino* est exclusivement réservé au petit-déjeuner ; en commander un après-midi vous identifiera immédiatement comme un touriste !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- JOUR 3 -->
+                <div id="jour3" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 3: Essere e Presentarsi (Être et se Présenter)</h2></div>
+                        <div class="card-body">
+                            <div class="section">
+                                <h3 class="section-title">Objectif du jour</h3>
+                                <p>Savoir se présenter en utilisant le verbe "être".</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Contenu du cours : Le verbe Essere</h3>
+                                <p>Le verbe <b>essere</b> (être) au présent : <i>sono, sei, è, siamo, siete, sono</i>. Les adjectifs de nationalité et leur accord.</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Phrases (Présentation)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Mi chiamo...</div></div><div class="translation">Je m'appelle...</div></div>
+                                    <div class="vocab-item"><div><div class="term">Sono francese.</div></div><div class="translation">Je suis français/e.</div></div>
+                                    <div class="vocab-item"><div><div class="term">Di dove sei?</div></div><div class="translation">D'où viens-tu ?</div></div>
+                                    <div class="vocab-item"><div><div class="term">Piacere di conoscerti.</div></div><div class="translation">Ravi de te rencontrer.</div></div>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Exercices pratiques</h3>
+                                <div class="exercise"><div class="exercise-title">Exercice (expression orale)</div><p>Se présenter à voix haute. "Ciao, mi chiamo [Votre nom]. Sono [votre nationalité]. Piacere!".</p></div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Focus (Linguistique) : L'origine latine de l'italien</h3>
+                                <div class="note-box"><div class="note-title">Un héritage direct</div>
+                                    <p>L'italien est la langue romane la plus proche du latin. Il ne dérive pas du latin classique de Cicéron, mais du <b>latin vulgaire</b>, la langue parlée par les soldats et le peuple de l'Empire romain, qui a ensuite évolué différemment dans chaque région.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- JOUR 4 -->
+                <div id="jour4" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 4: Avere e Possedere (Avoir et Posséder)</h2></div>
+                        <div class="card-body">
+                            <div class="section">
+                                <h3 class="section-title">Objectif du jour</h3>
+                                <p>Utiliser le verbe "avoir" pour parler de ses possessions et de son âge.</p>
+                            </div>
+                             <div class="section">
+                                <h3 class="section-title">Contenu du cours : Le verbe Avere</h3>
+                                <p>Le verbe <b>avere</b> (avoir) au présent : <i>ho, hai, ha, abbiamo, avete, hanno</i>.</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Phrases (Expressions avec Avere)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Ho 30 anni.</div></div><div class="translation">J'ai 30 ans.</div></div>
+                                    <div class="vocab-item"><div><div class="term">Hai un fratello?</div></div><div class="translation">As-tu un frère ?</div></div>
+                                    <div class="vocab-item"><div><div class="term">Ho fame / Ho sete.</div></div><div class="translation">J'ai faim / J'ai soif.</div></div>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Exercices pratiques</h3>
+                                <div class="exercise"><div class="exercise-title">Exercice (écriture)</div><p>Compléter des phrases avec la bonne forme de <i>essere</i> ou <i>avere</i>.</p></div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Focus (Culture) : Les gestes italiens</h3>
+                                <div class="note-box"><div class="note-title">Parler avec les mains</div>
+                                    <p>La communication non verbale est essentielle en Italie. Par exemple, pincer le pouce et les autres doigts ensemble vers le haut peut signifier "Qu'est-ce que tu veux ?". Apprendre quelques gestes de base aide à la compréhension.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- JOUR 5 -->
+                <div id="jour5" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 5: Io Parlo Italiano (Je Parle Italien)</h2></div>
+                        <div class="card-body">
+                            <div class="section">
+                                <h3 class="section-title">Objectif du jour</h3>
+                                <p>Conjuguer les verbes réguliers du premier groupe (-ARE).</p>
+                            </div>
+                             <div class="section">
+                                <h3 class="section-title">Contenu du cours : Verbes en -ARE</h3>
+                                <p>Les verbes réguliers en <b>-ARE</b> au présent (ex: <i>parlare</i>, <i>abitare</i>, <i>lavorare</i>, <i>amare</i>). Structure de la conjugaison.</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Vocabulaire (Verbes d'action)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Cantare</div></div><div class="translation">Chanter</div></div>
+                                    <div class="vocab-item"><div><div class="term">Guardare</div></div><div class="translation">Regarder</div></div>
+                                    <div class="vocab-item"><div><div class="term">Ascoltare</div></div><div class="translation">Écouter</div></div>
+                                    <div class="vocab-item"><div><div class="term">Comprare</div></div><div class="translation">Acheter</div></div>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Exercices pratiques</h3>
+                                <div class="exercise"><div class="exercise-title">Exercice (expression orale)</div><p>Créer des phrases simples : "Io parlo italiano", "Tu lavori a Parigi", "Lei canta una canzone".</p></div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Focus (Phonétique) : Le "r" roulé italien</h3>
+                                <div class="note-box"><div class="note-title">Un son emblématique</div>
+                                    <p>Le "r" roulé est une consonne vibrante. Pour le produire, la pointe de la langue doit vibrer rapidement contre le palais. Un bon exercice est de répéter des mots comme <i>treno</i> (train) ou <i>birra</i> (bière) en exagérant la vibration.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- JOUR 6 -->
+                <div id="jour6" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 6: Che Ora È? (Quelle Heure Est-il ?)</h2></div>
+                        <div class="card-body">
+                            <div class="section">
+                                <h3 class="section-title">Objectif du jour</h3>
+                                <p>Compter et dire l'heure.</p>
+                            </div>
+                             <div class="section">
+                                <h3 class="section-title">Contenu du cours : Les Nombres</h3>
+                                <p>Apprentissage des nombres de 0 à 100.</p>
+                                <div class="numbers-grid">
+                                    <div class="number-item"><div class="digit">1</div><div class="italian">uno</div></div>
+                                    <div class="number-item"><div class="digit">10</div><div class="italian">dieci</div></div>
+                                    <div class="number-item"><div class="digit">20</div><div class="italian">venti</div></div>
+                                    <div class="number-item"><div class="digit">50</div><div class="italian">cinquanta</div></div>
+                                    <div class="number-item"><div class="digit">100</div><div class="italian">cento</div></div>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Phrases (L'heure)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Che ora è?</div></div><div class="translation">Quelle heure est-il ?</div></div>
+                                    <div class="vocab-item"><div><div class="term">È l'una.</div></div><div class="translation">Il est une heure.</div></div>
+                                    <div class="vocab-item"><div><div class="term">Sono le tre e un quarto.</div></div><div class="translation">Il est trois heures et quart.</div></div>
+                                    <div class="vocab-item"><div><div class="term">È mezzogiorno.</div></div><div class="translation">Il est midi.</div></div>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Exercices pratiques</h3>
+                                <div class="exercise"><div class="exercise-title">Exercice (écriture)</div><p>Écrire en toutes lettres différentes heures (ex: 14:30, 08:10, 19:45).</p></div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Focus (Histoire) : L'influence des chiffres romains</h3>
+                                <div class="note-box"><div class="note-title">Un héritage visible</div>
+                                    <p>Bien que l'on utilise les chiffres arabes, l'héritage de Rome est visible dans l'usage des chiffres romains pour indiquer les siècles (<i>il secolo XXI</i>) ou les noms de papes (*Papa Francesco* I), un rappel constant de l'histoire du pays.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- JOUR 7 -->
+                <div id="jour7" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 7: Ripasso e Domande (Révision et Questions)</h2></div>
+                        <div class="card-body">
+                            <div class="section">
+                                <h3 class="section-title">Objectif du jour</h3>
+                                <p>Consolider les acquis de la semaine et apprendre à poser des questions.</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Contenu du cours : Mots interrogatifs</h3>
+                                <p>Introduction aux mots interrogatifs : <i>chi?</i> (qui ?), <i>cosa?</i> (quoi ?), <i>dove?</i> (où ?), <i>quando?</i> (quand ?), <i>perché?</i> (pourquoi ?), <i>come?</i> (comment ?).</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Exercices pratiques</h3>
+                                <div class="exercise"><div class="exercise-title">Exercice (mixte)</div><p>Traduire des phrases courtes du français à l'italien, en utilisant tout le vocabulaire et la grammaire de la semaine.</p></div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Focus (Culture) : La "passeggiata"</h3>
+                                <div class="note-box"><div class="note-title">Le théâtre de rue quotidien</div>
+                                    <p>La <i>passeggiata</i> est le rituel de la promenade en fin d'après-midi. Les Italiens s'habillent bien (*fare la bella figura*) et se promènent lentement sur la place principale (*piazza*). Le but n'est pas l'exercice, mais la socialisation : saluer, discuter, voir et être vu.</p>
+                                </div>
+                            </div>
+                             <div class="section">
+                                <h3 class="section-title">Bilan de la première semaine</h3>
+                                <div class="recap-list">
+                                    <ul>
+                                        <li>Maîtrise de la prononciation de base</li>
+                                        <li>Capacité à saluer, se présenter et utiliser les formules de politesse</li>
+                                        <li>Conjugaison des verbes "essere" et "avere"</li>
+                                        <li>Utilisation des articles et des noms</li>
+                                        <li>Capacité à compter et dire l'heure</li>
+                                        <li>Vocabulaire d'environ 50 mots</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="week2" class="week-content">
+                <!-- JOUR 8 -->
+                <div id="jour8" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 8: Prendere e Leggere (Prendre et Lire)</h2></div>
+                        <div class="card-body">
+                            <div class="section">
+                                <h3 class="section-title">Objectif du jour</h3>
+                                <p>Maîtriser les verbes réguliers du deuxième groupe (-ERE).</p>
+                            </div>
+                             <div class="section">
+                                <h3 class="section-title">Contenu du cours : Verbes en -ERE</h3>
+                                <p>Les verbes réguliers en <b>-ERE</b> au présent (ex: <i>prendere</i>, <i>vedere</i>, <i>leggere</i>, <i>scrivere</i>).</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Vocabulaire (Verbes d'action)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Vivere</div></div><div class="translation">Vivre</div></div>
+                                    <div class="vocab-item"><div><div class="term">Credere</div></div><div class="translation">Croire</div></div>
+                                    <div class="vocab-item"><div><div class="term">Chiedere</div></div><div class="translation">Demander</div></div>
+                                    <div class="vocab-item"><div><div class="term">Mettere</div></div><div class="translation">Mettre</div></div>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Exercices pratiques</h3>
+                                <div class="exercise"><div class="exercise-title">Exercice (écriture)</div><p>Conjuguer ces verbes dans des phrases. "Noi scriviamo una lettera" (Nous écrivons une lettre).</p></div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Focus (Étymologie) : Les mots italiens en français</h3>
+                                <div class="note-box"><div class="note-title">Une influence durable</div>
+                                    <p>Le français a emprunté de nombreux mots à l'italien, surtout à la Renaissance. Beaucoup concernent les arts (<i>opéra, scénario, fiasco</i>), la cuisine (<i>pizza, pesto</i>), la finance (<i>banque</i>) et la vie quotidienne (<i>bravo, al dente</i>).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- JOUR 9 -->
+                <div id="jour9" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 9: Aprire e Dormire (Ouvrir et Dormir)</h2></div>
+                        <div class="card-body">
+                            <div class="section">
+                                <h3 class="section-title">Objectif du jour</h3>
+                                <p>Découvrir les verbes réguliers du troisième groupe (-IRE).</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Contenu du cours : Verbes en -IRE</h3>
+                                <p>Les verbes réguliers en <b>-IRE</b> au présent. Distinction entre les verbes comme <i>dormire</i> et ceux qui ajoutent "-isc-" comme <i>finire</i> (*finisco, finisci...*).</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Vocabulaire (Verbes en -IRE)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Partire</div></div><div class="translation">Partir</div></div>
+                                    <div class="vocab-item"><div><div class="term">Aprire</div></div><div class="translation">Ouvrir</div></div>
+                                    <div class="vocab-item"><div><div class="term">Preferire</div></div><div class="translation">Préférer</div></div>
+                                    <div class="vocab-item"><div><div class="term">Capire</div></div><div class="translation">Comprendre</div></div>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Exercices pratiques</h3>
+                                <div class="exercise"><div class="exercise-title">Exercice (expression orale)</div><p>"Capisco l'italiano", "Preferisco il tè", "Loro partono domani".</p></div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Focus (Phonétique) : Les doubles consonnes</h3>
+                                <div class="note-box"><div class="note-title">Une différence de sens</div>
+                                    <p>La prononciation des consonnes doubles est très importante car elle peut changer le sens d'un mot. Elles sont prononcées de manière plus longue et appuyée. On marque une très brève pause avant. Ex : <i>capello</i> (cheveu) vs <i>cappello</i> (chapeau).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Le reste des jours sera ajouté ici en suivant la même structure... -->
+                <!-- JOUR 10 -->
+                <div id="jour10" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 10: Mi Piace la Pasta! (J'aime les Pâtes !)</h2></div>
+                        <div class="card-body">
+                            <div class="section">
+                                <h3 class="section-title">Objectif du jour</h3>
+                                <p>Exprimer ses goûts.</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Contenu du cours : La structure "Mi Piace"</h3>
+                                <p>La structure <b>Mi piace</b> (pour un nom singulier) / <b>Mi piacciono</b> (pour un nom pluriel).</p>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Vocabulaire (La nourriture)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">La pasta</div></div><div class="translation">Les pâtes</div></div>
+                                    <div class="vocab-item"><div><div class="term">La pizza</div></div><div class="translation">La pizza</div></div>
+                                    <div class="vocab-item"><div><div class="term">Il formaggio</div></div><div class="translation">Le fromage</div></div>
+                                    <div class="vocab-item"><div><div class="term">Il vino</div></div><div class="translation">Le vin</div></div>
+                                </div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Exercices pratiques</h3>
+                                <div class="exercise"><div class="exercise-title">Exercice (écriture)</div><p>Lister 5 choses que vous aimez et 5 que vous n'aimez pas en utilisant "Mi piace / Non mi piace".</p></div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Focus (Culture) : La structure d'un repas italien</h3>
+                                <div class="note-box"><div class="note-title">Un marathon culinaire</div>
+                                    <p>Un repas de fête peut être long ! Il comprend typiquement : <i>antipasto</i> (hors-d'œuvre), <i>primo</i> (pâtes/risotto), <i>secondo</i> (viande/poisson) avec <i>contorno</i> (garniture), puis <i>dolce</i> (dessert), <i>caffè</i> et <i>digestivo</i>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- JOUR 11 -->
+                <div id="jour11" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 11: Le Preposizioni Semplici (Les Prépositions Simples)</h2></div>
+                        <div class="card-body">
+                            <div class="section"><h3 class="section-title">Objectif du jour</h3><p>Utiliser les prépositions de base pour lier les mots.</p></div>
+                            <div class="section"><h3 class="section-title">Contenu du cours : Prépositions simples</h3><p>Introduction aux prépositions <b>di, a, da, in, con, su, per, tra, fra</b>.</p></div>
+                            <div class="section"><h3 class="section-title">Phrases (Exemples)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Vado a Roma.</div></div><div class="translation">Je vais à Rome.</div></div>
+                                    <div class="vocab-item"><div><div class="term">Sono di Parigi.</div></div><div class="translation">Je suis de Paris.</div></div>
+                                    <div class="vocab-item"><div><div class="term">Un caffè con zucchero.</div></div><div class="translation">Un café avec du sucre.</div></div>
+                                </div>
+                            </div>
+                            <div class="section"><h3 class="section-title">Exercices pratiques</h3><div class="exercise"><div class="exercise-title">Exercice (à trous)</div><p>Compléter des phrases avec la bonne préposition.</p></div></div>
+                            <div class="section"><h3 class="section-title">Focus (Linguistique) : La difficulté des prépositions</h3>
+                                <div class="note-box"><div class="note-title">Pas de logique, de l'usage !</div><p>Les prépositions sont souvent la partie la plus difficile d'une langue. Il n'y a pas de traduction directe 1-pour-1. "Je vais à Rome" se dit <i>Vado a Roma</i>, mais "Je vais en France" se dit <i>Vado in Francia</i>. Il faut apprendre leur usage par la pratique.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- JOUR 12 -->
+                <div id="jour12" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 12: Potere, Volere, Dovere (Pouvoir, Vouloir, Devoir)</h2></div>
+                        <div class="card-body">
+                            <div class="section"><h3 class="section-title">Objectif du jour</h3><p>Utiliser les verbes modaux.</p></div>
+                            <div class="section"><h3 class="section-title">Contenu du cours : Les verbes modaux</h3><p>Les verbes modaux <b>potere</b> (pouvoir), <b>volere</b> (vouloir), <b>dovere</b> (devoir) + verbe à l'infinitif.</p></div>
+                            <div class="section"><h3 class="section-title">Phrases (Exemples)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Posso entrare?</div></div><div class="translation">Puis-je entrer ?</div></div>
+                                    <div class="vocab-item"><div><div class="term">Voglio un gelato.</div></div><div class="translation">Je veux une glace.</div></div>
+                                    <div class="vocab-item"><div><div class="term">Devo studiare.</div></div><div class="translation">Je dois étudier.</div></div>
+                                </div>
+                            </div>
+                            <div class="section"><h3 class="section-title">Exercices pratiques</h3><div class="exercise"><div class="exercise-title">Exercice (expression orale)</div><p>Formuler des demandes ou exprimer des besoins. "Vorrei un caffè, per favore" (Je voudrais un café, s'il vous plaît).</p></div></div>
+                            <div class="section"><h3 class="section-title">Focus (Culture) : Les formules de politesse</h3>
+                                <div class="note-box"><div class="note-title">Clés de l'interaction</div><p>Elles sont essentielles. <i>Per favore</i> (s'il vous plaît), <i>grazie</i> (merci), <i>prego</i> (de rien), <i>scusi</i> (excusez-moi). Utiliser ces mots montre du respect et vous ouvrira bien des portes.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- JOUR 13 -->
+                <div id="jour13" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 13: Ieri Ho Mangiato... (Hier J'ai Mangé...)</h2></div>
+                        <div class="card-body">
+                            <div class="section"><h3 class="section-title">Objectif du jour</h3><p>Parler d'une action passée terminée avec le "Passato Prossimo".</p></div>
+                            <div class="section"><h3 class="section-title">Contenu du cours : Le Passato Prossimo (avec Avere)</h3><p>Introduction au <b>Passato Prossimo</b> (passé composé) avec l'auxiliaire <b>avere</b>. Formation : <i>avere</i> au présent + participe passé.</p></div>
+                            <div class="section"><h3 class="section-title">Vocabulaire (Participes passés)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">parlato</div></div><div class="translation">parlé</div></div>
+                                    <div class="vocab-item"><div><div class="term">mangiato</div></div><div class="translation">mangé</div></div>
+                                    <div class="vocab-item"><div><div class="term">visto</div></div><div class="translation">vu</div></div>
+                                    <div class="vocab-item"><div><div class="term">letto</div></div><div class="translation">lu</div></div>
+                                </div>
+                            </div>
+                            <div class="section"><h3 class="section-title">Exercices pratiques</h3><div class="exercise"><div class="exercise-title">Exercice (écriture)</div><p>Mettre des phrases au Passato Prossimo. "Io parlo" -> "Io ho parlato".</p></div></div>
+                            <div class="section"><h3 class="section-title">Focus (Histoire) : L'unification linguistique de l'Italie</h3>
+                                <div class="note-box"><div class="note-title">Une langue, plusieurs dialectes</div><p>Lorsque l'Italie a été unifiée en 1861, moins de 10% de la population parlait l'italien. L'État a imposé le dialecte de Florence (celui de Dante) comme langue nationale, diffusé par l'école et la télévision.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- JOUR 14 -->
+                <div id="jour14" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 14: Sono Andato al Cinema (Je Suis Allé au Cinéma)</h2></div>
+                        <div class="card-body">
+                            <div class="section"><h3 class="section-title">Objectif du jour</h3><p>Compléter l'apprentissage du Passato Prossimo avec l'auxiliaire "essere".</p></div>
+                            <div class="section"><h3 class="section-title">Contenu du cours : Le Passato Prossimo (avec Essere)</h3><p>Le <b>Passato Prossimo</b> avec l'auxiliaire <b>essere</b>. L'accord du participe passé avec le sujet. On l'utilise pour les verbes de mouvement et de changement d'état.</p></div>
+                            <div class="section"><h3 class="section-title">Vocabulaire (Verbes avec Essere)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">andare -> andato/a</div></div><div class="translation">aller</div></div>
+                                    <div class="vocab-item"><div><div class="term">venire -> venuto/a</div></div><div class="translation">venir</div></div>
+                                    <div class="vocab-item"><div><div class="term">partire -> partito/a</div></div><div class="translation">partir</div></div>
+                                </div>
+                            </div>
+                            <div class="section"><h3 class="section-title">Exercices pratiques</h3><div class="exercise"><div class="exercise-title">Exercice (mixte)</div><p>Choisir le bon auxiliaire (<i>avere</i> ou <i>essere</i>) pour former le Passato Prossimo.</p></div></div>
+                            <div class="section"><h3 class="section-title">Focus (Linguistique) : L'accord du participe passé</h3>
+                                <div class="note-box"><div class="note-title">Une règle logique</div><p>Quand on utilise <i>essere</i>, le participe passé fonctionne comme un adjectif et s'accorde en genre et en nombre avec le sujet. <i>Maria è andata</i> (Maria est allée), <i>I ragazzi sono partiti</i> (Les garçons sont partis).</p></div>
+                            </div>
+                            <div class="section">
+                                <h3 class="section-title">Bilan de la deuxième semaine</h3>
+                                <div class="recap-list">
+                                    <ul>
+                                        <li>Maîtrise des verbes réguliers au présent</li>
+                                        <li>Capacité à exprimer ses goûts et préférences</li>
+                                        <li>Utilisation des prépositions de base et des verbes modaux</li>
+                                        <li>Introduction au passé (Passato Prossimo)</li>
+                                        <li>Vocabulaire enrichi d'environ 100 mots</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="week3" class="week-content">
+                 <!-- JOUR 15 -->
+                <div id="jour15" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 15: Lo Vedo! (Je le Vois !)</h2></div>
+                        <div class="card-body">
+                             <div class="section"><h3 class="section-title">Objectif du jour</h3><p>Remplacer un complément par un pronom.</p></div>
+                             <div class="section"><h3 class="section-title">Contenu du cours : Les pronoms compléments directs</h3><p>Les pronoms compléments directs <b>lo, la, l', li, le</b>. Leur place avant le verbe.</p></div>
+                             <div class="section"><h3 class="section-title">Phrases (Exemples)</h3>
+                                <div class="dialogue-box">
+                                     <div class="dialogue-line"><span class="italian">Vedi il libro?</span><span class="translation">Vois-tu le livre ?</span></div>
+                                     <div class="dialogue-line"><span class="italian">Sì, <b>lo</b> vedo.</span><span class="translation">Oui, je <b>le</b> vois.</span></div>
+                                     <div class="dialogue-line"><span class="italian">Compri la pasta?</span><span class="translation">Achètes-tu les pâtes ?</span></div>
+                                     <div class="dialogue-line"><span class="italian">Sì, <b>la</b> compro.</span><span class="translation">Oui, je <b>l'</b>achète.</span></div>
+                                </div>
+                             </div>
+                             <div class="section"><h3 class="section-title">Exercices pratiques</h3><div class="exercise"><div class="exercise-title">Exercice (écriture)</div><p>Répondre à des questions en utilisant un pronom direct.</p></div></div>
+                             <div class="section"><h3 class="section-title">Focus (Culture) : La "bella figura"</h3>
+                                <div class="note-box"><div class="note-title">L'art de la présentation</div><p>La <i>bella figura</i> (la belle figure) est un concept social central. Il ne s'agit pas seulement d'être bien habillé, mais de faire une bonne impression dans toutes les situations : politesse, éloquence, générosité... Faire une <i>brutta figura</i> (mauvaise figure) est à éviter à tout prix.</p></div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- JOUR 16 -->
+                <div id="jour16" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 16: Fa' Silenzio! (Fais Silence !)</h2></div>
+                        <div class="card-body">
+                            <div class="section"><h3 class="section-title">Objectif du jour</h3><p>Donner un ordre ou un conseil avec l'impératif.</p></div>
+                            <div class="section"><h3 class="section-title">Contenu du cours : L'Impératif</h3><p>L'<b>impératif</b> (imperativo). Formes informelles (tu, noi, voi) et la forme de politesse (Lei).</p></div>
+                            <div class="section"><h3 class="section-title">Phrases (Ordres/Conseils)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">(Tu) Parla!</div></div><div class="translation">Parle !</div></div>
+                                    <div class="vocab-item"><div><div class="term">(Noi) Andiamo!</div></div><div class="translation">Allons-y !</div></div>
+                                    <div class="vocab-item"><div><div class="term">(Lei) Prenda, per favore.</div></div><div class="translation">Prenez, s'il vous plaît.</div></div>
+                                    <div class="vocab-item"><div><div class="term">Non parlare!</div></div><div class="translation">Ne parle pas !</div></div>
+                                </div>
+                            </div>
+                            <div class="section"><h3 class="section-title">Exercices pratiques</h3><div class="exercise"><div class="exercise-title">Exercice (expression orale)</div><p>S'imaginer donner des instructions simples (ex: recette de cuisine, itinéraire).</p></div></div>
+                            <div class="section"><h3 class="section-title">Focus (Linguistique) : Le "Lei" de politesse</h3>
+                                <div class="note-box"><div class="note-title">Une marque de respect</div><p>Pour vouvoyer, l'italien utilise la 3ème personne du singulier féminin : <i>Lei</i>. Toutes les conjugaisons et adjectifs s'accordent au féminin, même si l'on s'adresse à un homme. Ex: <i>Signore, Lei è molto gentile</i> (Monsieur, vous êtes très gentil).</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- JOUR 17 -->
+                <div id="jour17" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 17: In Viaggio (En Voyage)</h2></div>
+                        <div class="card-body">
+                            <div class="section"><h3 class="section-title">Objectif du jour</h3><p>Se débrouiller en situation de voyage.</p></div>
+                            <div class="section"><h3 class="section-title">Vocabulaire (Transport et voyage)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Il treno</div></div><div class="translation">Le train</div></div>
+                                    <div class="vocab-item"><div><div class="term">L'aereo</div></div><div class="translation">L'avion</div></div>
+                                    <div class="vocab-item"><div><div class="term">La stazione</div></div><div class="translation">La gare</div></div>
+                                    <div class="vocab-item"><div><div class="term">Il biglietto</div></div><div class="translation">Le billet</div></div>
+                                </div>
+                            </div>
+                            <div class="section"><h3 class="section-title">Phrases (Demander son chemin)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Scusi, dov'è la stazione?</div></div><div class="translation">Excusez-moi, où est la gare ?</div></div>
+                                    <div class="vocab-item"><div><div class="term">Sempre dritto</div></div><div class="translation">Toujours tout droit</div></div>
+                                    <div class="vocab-item"><div><div class="term">A destra / A sinistra</div></div><div class="translation">À droite / À gauche</div></div>
+                                </div>
+                            </div>
+                            <div class="section"><h3 class="section-title">Exercices pratiques</h3><div class="exercise"><div class="exercise-title">Exercice (simulation)</div><p>Imaginer acheter un billet de train pour Florence.</p></div></div>
+                            <div class="section"><h3 class="section-title">Focus (Histoire) : Le Grand Tour</h3>
+                                <div class="note-box"><div class="note-title">Un voyage initiatique</div><p>Aux 17e et 18e siècles, les jeunes nobles européens accomplissaient un "Grand Tour" pour parfaire leur éducation. Le point culminant était l'Italie, berceau de la culture classique. Ce phénomène a forgé une image romantique de l'Italie qui perdure encore.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- JOUR 18 -->
+                <div id="jour18" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 18: C'era una Volta... (Il Était une Fois...)</h2></div>
+                        <div class="card-body">
+                            <div class="section"><h3 class="section-title">Objectif du jour</h3><p>Apprendre à décrire des situations passées avec l'Imparfait.</p></div>
+                            <div class="section"><h3 class="section-title">Contenu du cours : L'Imparfait</h3><p>L'<b>imparfait</b> (l'imperfetto) est utilisé pour les descriptions, les actions habituelles ou en cours dans le passé.</p></div>
+                            <div class="section"><h3 class="section-title">Phrases (Exemples)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Da bambino, abitavo in campagna.</div></div><div class="translation">Enfant, j'habitais à la campagne.</div></div>
+                                    <div class="vocab-item"><div><div class="term">Faceva bel tempo.</div></div><div class="translation">Il faisait beau.</div></div>
+                                </div>
+                            </div>
+                            <div class="section"><h3 class="section-title">Exercices pratiques</h3><div class="exercise"><div class="exercise-title">Exercice (écriture)</div><p>Décrire un souvenir d'enfance en utilisant l'imparfait.</p></div></div>
+                            <div class="section"><h3 class="section-title">Focus (Culture) : Le cinéma italien</h3>
+                                <div class="note-box"><div class="note-title">Une fenêtre sur l'âme de l'Italie</div><p>L'âge d'or du cinéma italien a marqué l'histoire. Du Néoréalisme (<i>Le Voleur de bicyclette</i>) à Fellini (<i>La Dolce Vita</i>), le cinéma italien offre une perspective unique sur l'histoire et la société du pays.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- JOUR 19 -->
+                <div id="jour19" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 19: Passato Prossimo o Imperfetto?</h2></div>
+                        <div class="card-body">
+                            <div class="section"><h3 class="section-title">Objectif du jour</h3><p>Choisir le bon temps du passé.</p></div>
+                            <div class="section"><h3 class="section-title">Contenu du cours : Passato Prossimo vs. Imperfetto</h3><p><b>Passato Prossimo</b> : action ponctuelle, terminée. <br><b>Imperfetto</b> : description, habitude, action de fond.</p></div>
+                            <div class="section"><h3 class="section-title">Exercices pratiques</h3><div class="exercise"><div class="exercise-title">Exercice (mixte)</div><p>Choisir le temps correct dans des phrases. "Ieri (andare) ___ al mercato e (comprare) ___ della frutta. Mentre (camminare) ___, (incontrare) ___ un amico."</p></div></div>
+                            <div class="section"><h3 class="section-title">Focus (Linguistique) : L'art de raconter une histoire</h3>
+                                <div class="note-box"><div class="note-title">Donner du relief au récit</div><p>L'alternance des deux temps du passé permet de structurer un récit. L'<b>imparfait</b> plante le décor (contexte, description). Le <b>passé composé</b> fait avancer l'action (événements principaux, soudains).</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- JOUR 20 -->
+                <div id="jour20" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 20: Domani Partirò (Demain Je Partirai)</h2></div>
+                        <div class="card-body">
+                            <div class="section"><h3 class="section-title">Objectif du jour</h3><p>Parler de l'avenir.</p></div>
+                            <div class="section"><h3 class="section-title">Contenu du cours : Le Futur Simple</h3><p>Le <b>futur simple</b> (il futuro semplice). Sa formation (souvent régulière) et son utilisation.</p></div>
+                             <div class="section"><h3 class="section-title">Phrases (Exemples)</h3>
+                                <div class="vocab-list">
+                                    <div class="vocab-item"><div><div class="term">Domani studierò l'italiano.</div></div><div class="translation">Demain, j'étudierai l'italien.</div></div>
+                                    <div class="vocab-item"><div><div class="term">Cosa farai nel weekend?</div></div><div class="translation">Que feras-tu ce week-end ?</div></div>
+                                </div>
+                            </div>
+                            <div class="section"><h3 class="section-title">Exercices pratiques</h3><div class="exercise"><div class="exercise-title">Exercice (expression orale)</div><p>Parler de ses projets pour la semaine prochaine en utilisant le futur.</p></div></div>
+                            <div class="section"><h3 class="section-title">Focus (Culture) : Les superstitions italiennes</h3>
+                                <div class="note-box"><div class="note-title">Scaramanzia</div><p>L'Italie est un pays où les superstitions sont présentes. Le chiffre 13 porte bonheur, contrairement au 17. Le mauvais œil (*malocchio*) est une croyance répandue, et pour s'en protéger, on utilise un porte-bonheur en forme de piment, le <i>cornetto</i>.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- JOUR 21 -->
+                <div id="jour21" class="tab-content">
+                    <div class="card">
+                        <div class="card-header"><h2>Jour 21: Gran Finale!</h2></div>
+                        <div class="card-body">
+                            <div class="section"><h3 class="section-title">Objectif du jour</h3><p>Réviser et mettre en pratique dans une conversation simulée.</p></div>
+                            <div class="section"><h3 class="section-title">Contenu du cours : Révision générale</h3><p>Révision générale des concepts clés : présents, passés, futur, questions, politesse.</p></div>
+                            <div class="section"><h3 class="section-title">Exercices pratiques</h3>
+                                <div class="exercise"><div class="exercise-title">Exercice (simulation de conversation)</div>
+                                    <p>1. <b>Au bar :</b> Commander un café et une pâtisserie (*un cornetto*).</p>
+                                    <p>2. <b>Au magasin :</b> Demander le prix de quelque chose.</p>
+                                    <p>3. <b>Dans la rue :</b> Demander son chemin vers le Colisée.</p>
+                                </div>
+                            </div>
+                            <div class="section"><h3 class="section-title">Focus (Synthèse) : L'italien standard et les dialectes</h3>
+                                <div class="note-box"><div class="note-title">Une richesse linguistique immense</div><p>Ce qu'on apprend comme "l'italien" est la langue standard. Cependant, les <i>dialetti</i> (napolitain, sicilien...) sont souvent des langues romanes à part entière. Si tous les Italiens parlent l'italien standard, beaucoup utilisent encore le dialecte en famille, témoignant d'une identité régionale très forte.</p></div>
+                            </div>
+                             <div class="congratulations-message" id="congratulations-message" style="display: none;">
+                                <h3>Congratulazioni!</h3>
+                                <p>Bravo pour votre persévérance ! Vous avez maintenant acquis les bases solides de l'italien :</p>
+                                <ul>
+                                    <li>Maîtrise de la prononciation et des sons italiens</li>
+                                    <li>Vocabulaire de base d'environ 250 mots</li>
+                                    <li>Structures grammaticales essentielles</li>
+                                    <li>Capacité à tenir des conversations simples</li>
+                                    <li>Compréhension des aspects culturels importants</li>
+                                </ul>
+                                <p>Continuez à pratiquer régulièrement. In bocca al lupo! - Bonne chance !</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <div class="day-navigator" id="main-day-navigator" style="margin: 20px auto; max-width: 900px;">
+        <button class="nav-button" id="prevDayBtn" onclick="previousDay()">← Jour précédent</button>
+        <button class="nav-button" id="nextDayBtn" onclick="nextDay()">Jour suivant →</button>
+    </div>
+
+    <a href="#" class="back-to-top" id="back-to-top">↑</a>
+    
+    <footer>
+        <div class="container">
+            <p>Apprentissage de l'Italien en 21 Jours - Une méthode progressive et structurée</p>
+            <p>Créé avec ❤️ pour les débutants en italien.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Configuration des semaines
+        const weeksConfig = {
+            'week1': { startDay: 1, endDay: 7, title: "Semaine 1" },
+            'week2': { startDay: 8, endDay: 14, title: "Semaine 2" },
+            'week3': { startDay: 15, endDay: 21, title: "Semaine 3" }
+        };
+
+        let userProgress = {
+            currentDay: 1,
+            completedDays: [],
+            totalProgress: 0,
+            lastVisit: new Date().toISOString()
+        };
+        
+        let activeWeekId = '';
+
+        function loadProgress() {
+            const saved = localStorage.getItem('italianCourseProgress');
+            if (saved) {
+                userProgress = JSON.parse(saved);
+                if (userProgress.currentDay > 21) userProgress.currentDay = 21;
+            }
+            updateProgressUI();
+        }
+        
+        function saveProgress() {
+            userProgress.lastVisit = new Date().toISOString();
+            localStorage.setItem('italianCourseProgress', JSON.stringify(userProgress));
+            updateProgressUI();
+        }
+        
+        function updateProgressUI() {
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            const completedCount = [...new Set(userProgress.completedDays)].length;
+            userProgress.totalProgress = Math.round((completedCount / 21) * 100);
+            progressFill.style.width = userProgress.totalProgress + '%';
+            progressFill.textContent = userProgress.totalProgress + '%';
+            progressText.textContent = completedCount + '/21 jours complétés';
+        }
+        
+        function markDayComplete(day) {
+            if (!userProgress.completedDays.includes(day)) {
+                userProgress.completedDays.push(day);
+                saveProgress();
+            }
+        }
+        
+        function updateActiveNavigationColors() {
+            const mainNavItems = document.querySelectorAll('.navigation .nav-btn');
+            mainNavItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.href && item.href.includes('cours-italien-21-jours.html')) {
+                    item.classList.add('active');
+                }
+            });
+
+            const sidebarWeekBtns = document.querySelectorAll('.sidebar-week-btn');
+            sidebarWeekBtns.forEach(btn => btn.classList.remove('active-week'));
+            const currentSidebarWeekBtn = document.querySelector(`.sidebar-week-btn[data-week="${activeWeekId}"]`);
+            if (currentSidebarWeekBtn) currentSidebarWeekBtn.classList.add('active-week');
+
+            const allDayBtns = document.querySelectorAll('.sidebar-day-list .sidebar-day-btn, .day-buttons-summary .nav-button');
+            allDayBtns.forEach(btn => btn.classList.remove('active-day'));
+            
+            const currentDayBtnInSidebar = document.querySelector(`.sidebar-day-list .sidebar-day-btn[data-day="${userProgress.currentDay}"]`);
+            if (currentDayBtnInSidebar) currentDayBtnInSidebar.classList.add('active-day');
+            
+            const currentDayBtnInSummary = document.querySelector(`.day-buttons-summary .nav-button[data-day="${userProgress.currentDay}"]`);
+            if (currentDayBtnInSummary) currentDayBtnInSummary.classList.add('active-day');
+        }
+
+        function openWeek(weekName, activateSpecificDay = null) {
+            activeWeekId = weekName;
+            document.querySelectorAll('.week-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.week-summary-content').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.sidebar-week-btn').forEach(b => b.classList.remove('active-week'));
+            document.querySelectorAll('.sidebar-day-list').forEach(l => l.classList.remove('active'));
+
+            const currentSidebarWeekBtn = document.querySelector(`.sidebar-week-btn[data-week="${weekName}"]`);
+            if (currentSidebarWeekBtn) currentSidebarWeekBtn.classList.add('active-week');
+
+            generateSidebarDayTabs(weekName);
+            document.getElementById(`sidebar-day-list-${weekName}`).classList.add('active');
+            generateDayButtonsForSummary(weekName);
+
+            if (activateSpecificDay !== null) {
+                userProgress.currentDay = activateSpecificDay;
+                document.getElementById(weekName).classList.add('active');
+                openTab(`jour${activateSpecificDay}`);
+            } else {
+                document.getElementById(`weekSummary${weekName.replace('week', '')}`).classList.add('active');
+                document.querySelectorAll('.sidebar-day-list .sidebar-day-btn, .day-buttons-summary .nav-button').forEach(btn => btn.classList.remove('active-day'));
+                document.getElementById('main-day-navigator').style.display = 'none';
+            }
+            updateActiveNavigationColors();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function openTab(tabName) {
+            document.querySelectorAll('.week-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.week-summary-content').forEach(s => s.classList.remove('active'));
+            
+            const dayNumber = parseInt(tabName.replace('jour', ''));
+            const weekNumber = Math.ceil(dayNumber / 7);
+            const weekId = `week${weekNumber}`;
+
+            document.getElementById(weekId).classList.add('active');
+            document.querySelectorAll(`#${weekId} .tab-content`).forEach(content => content.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            
+            userProgress.currentDay = dayNumber;
+            saveProgress();
+            
+            if (activeWeekId !== weekId) {
+                activeWeekId = weekId;
+                document.querySelectorAll('.sidebar-week-btn').forEach(btn => btn.classList.remove('active-week'));
+                document.querySelector(`.sidebar-week-btn[data-week="${weekId}"]`).classList.add('active-week');
+                document.querySelectorAll('.sidebar-day-list').forEach(list => list.classList.remove('active'));
+                generateSidebarDayTabs(weekId);
+                document.getElementById(`sidebar-day-list-${weekId}`).classList.add('active');
+            }
+
+            updateActiveNavigationColors();
+            updateDayNavigatorButtons(dayNumber);
+            document.getElementById('congratulations-message').style.display = 'none';
+            document.getElementById('main-day-navigator').style.display = 'flex';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function nextDay() {
+            const currentDay = userProgress.currentDay;
+            if(currentDay === 21) {
+                validateProgram();
+                return;
+            }
+            markDayComplete(currentDay);
+            openTab(`jour${currentDay + 1}`);
+        }
+        
+        function previousDay() {
+            if (userProgress.currentDay > 1) {
+                openTab(`jour${userProgress.currentDay - 1}`);
+            }
+        }
+
+        function updateDayNavigatorButtons(currentDay) {
+            const prevButton = document.getElementById('prevDayBtn');
+            const nextButton = document.getElementById('nextDayBtn');
+            prevButton.disabled = (currentDay === 1);
+            
+            if (currentDay === 21) {
+                nextButton.textContent = 'Valider vos 21 jours';
+                nextButton.classList.add('validate');
+            } else {
+                nextButton.textContent = 'Jour suivant →';
+                nextButton.classList.remove('validate');
+            }
+        }
+
+        function validateProgram() {
+            markDayComplete(21);
+            document.getElementById('congratulations-message').style.display = 'block';
+            document.getElementById('main-day-navigator').style.display = 'none';
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+        
+        function generateSidebarDayTabs(weekName) {
+            const sidebarDayList = document.getElementById(`sidebar-day-list-${weekName}`);
+            sidebarDayList.innerHTML = '';
+            
+            const config = weeksConfig[weekName];
+            for (let i = config.startDay; i <= config.endDay; i++) {
+                const li = document.createElement('li');
+                li.className = 'sidebar-day-item';
+                const btn = document.createElement('button');
+                btn.className = 'sidebar-day-btn';
+                btn.dataset.day = i;
+                btn.textContent = `Jour ${i}`;
+                btn.onclick = () => openTab(`jour${i}`);
+                li.appendChild(btn);
+                sidebarDayList.appendChild(li);
+            }
+        }
+
+        function generateDayButtonsForSummary(weekName) {
+            const container = document.getElementById(`dayButtons${weekName.charAt(0).toUpperCase() + weekName.slice(1)}`);
+            if (container) {
+                container.innerHTML = '';
+                const config = weeksConfig[weekName];
+                for (let i = config.startDay; i <= config.endDay; i++) {
+                    const btn = document.createElement('button');
+                    btn.className = 'nav-button';
+                    btn.textContent = `Jour ${i}`;
+                    btn.dataset.day = i;
+                    btn.onclick = () => openTab(`jour${i}`);
+                    container.appendChild(btn);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+
+            document.querySelectorAll('.sidebar-week-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    openWeek(button.getAttribute('data-week'));
+                });
+            });
+
+            const initialDay = userProgress.currentDay;
+            const initialWeekNumber = Math.ceil(initialDay / 7);
+            openWeek(`week${initialWeekNumber}`, initialDay);
+
+            const backToTopBtn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                backToTopBtn.classList.toggle('visible', window.pageYOffset > 300);
+            });
+            backToTopBtn.addEventListener('click', e => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme) {
+                document.body.classList.add(currentTheme);
+                themeToggleBtn.textContent = currentTheme === 'dark-mode' ? '☀️' : '🌙';
+            }
+            themeToggleBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                let theme = document.body.classList.contains('dark-mode') ? 'dark-mode' : '';
+                themeToggleBtn.textContent = theme === 'dark-mode' ? '☀️' : '🌙';
+                if(theme) localStorage.setItem('theme', theme);
+                else localStorage.removeItem('theme');
+            });
+        });
+    </script>
+</body>
+</html>
